@@ -68,6 +68,7 @@ async function submitForm(){
     `*Message:* ${message}`;
   const waUrl='https://wa.me/918928793627?text='+encodeURIComponent(text);
   window.open(waUrl,'_blank');
+  setTimeout(()=>{btn.textContent='Send Enquiry \u2192';btn.disabled=false;},3000);
   document.getElementById('f-fields').style.display='none';
   document.getElementById('f-success').style.display='block';
 }
@@ -75,7 +76,7 @@ async function submitForm(){
 // ── CALCULATORS ──
 function fmt(n){return '₹'+Math.round(n).toLocaleString('en-IN');}
 function fmtK(n){if(n>=10000000)return '₹'+(n/10000000).toFixed(2)+' Cr';if(n>=100000)return '₹'+(n/100000).toFixed(2)+' L';return fmt(n);}
-function getVal(id){return parseFloat(document.getElementById(id).value)||0;}
+function getVal(id){return parseFloat(document.getElementById(id)?.value)||0;}
 
 function syncFromRange(rangeId,manualId){
   document.getElementById(manualId).value=document.getElementById(rangeId).value;
