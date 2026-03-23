@@ -90,11 +90,15 @@ function calcSIP(){
   const P=Math.max(100,getVal('sip-amt-manual'));
   const r=Math.max(0.01,getVal('sip-rate-manual'))/100/12;
   const n=Math.max(1,getVal('sip-yrs-manual'))*12;
+  const inf=getVal('sip-inf-manual')||0;
   const fv=P*((Math.pow(1+r,n)-1)/r)*(1+r);
   const invested=P*n;
+  const yrs=Math.max(1,getVal('sip-yrs-manual'));
+  const realFV=fv/Math.pow(1+inf/100,yrs);
   document.getElementById('sip-invested').textContent=fmtK(invested);
   document.getElementById('sip-returns').textContent=fmtK(fv-invested);
   document.getElementById('sip-total').textContent=fmtK(fv);
+  document.getElementById('sip-real').textContent=fmtK(realFV);
   drawSIPChart(P,getVal('sip-rate-manual'),getVal('sip-yrs-manual'));
 }
 
@@ -126,23 +130,31 @@ function calcLS(){
   const P=Math.max(100,getVal('ls-amt-manual'));
   const r=Math.max(0.01,getVal('ls-rate-manual'))/100;
   const n=Math.max(1,getVal('ls-yrs-manual'));
+  const inf=getVal('ls-inf-manual')||0;
   const fv=P*Math.pow(1+r,n);
+  const realFV=fv/Math.pow(1+inf/100,n);
   document.getElementById('ls-invested').textContent=fmtK(P);
   document.getElementById('ls-returns').textContent=fmtK(fv-P);
   document.getElementById('ls-total').textContent=fmtK(fv);
   document.getElementById('ls-mult').textContent=(fv/P).toFixed(1)+'x';
+  document.getElementById('ls-real').textContent=fmtK(realFV);
 }
 
 function calcGoal(){
-  const target=Math.max(1000,getVal('goal-target-manual'));
+  const targetNominal=Math.max(1000,getVal('goal-target-manual'));
+  const inf=getVal('goal-inf-manual')||0;
+  const yrs=Math.max(1,getVal('goal-yrs-manual'));
+  // Inflate the target to future value in nominal terms
+  const inflatedTarget=targetNominal*Math.pow(1+inf/100,yrs);
   const r=Math.max(0.01,getVal('goal-rate-manual'))/100/12;
-  const n=Math.max(1,getVal('goal-yrs-manual'))*12;
-  const sip=target*r/((Math.pow(1+r,n)-1)*(1+r));
+  const n=yrs*12;
+  const sip=inflatedTarget*r/((Math.pow(1+r,n)-1)*(1+r));
   const invested=sip*n;
+  document.getElementById('goal-corpus').textContent=fmtK(targetNominal);
+  document.getElementById('goal-inf-target').textContent=fmtK(inflatedTarget);
   document.getElementById('goal-sip').textContent=fmt(sip);
   document.getElementById('goal-invested').textContent=fmtK(invested);
-  document.getElementById('goal-returns').textContent=fmtK(target-invested);
-  document.getElementById('goal-corpus').textContent=fmtK(target);
+  document.getElementById('goal-returns').textContent=fmtK(inflatedTarget-invested);
 }
 
 function calcEMI(){
