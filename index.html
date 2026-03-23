@@ -442,14 +442,25 @@
             <input type="range" id="sip-yrs" min="1" max="40" step="1" value="10" oninput="syncFromRange('sip-yrs','sip-yrs-manual');calcSIP()" style="width:100%;accent-color:var(--acc);margin-top:8px">
             <div class="range-hints"><span>1 yr</span><span>40 yrs</span></div>
           </div>
+          <div class="calc-field inf-field">
+            <label>&#127777;&#65039; Inflation Rate (%) <span style="font-size:10px;color:var(--txf);letter-spacing:0;text-transform:none;font-weight:300">for real returns</span></label>
+            <div class="manual-row">
+              <input type="number" id="sip-inf-manual" min="0" max="15" step="0.5" value="6" oninput="syncFromManual('sip-inf','sip-inf-manual',0,15);calcSIP()" class="manual-input" style="padding-left:13px">
+              <span class="pct-suffix">%</span>
+            </div>
+            <input type="range" id="sip-inf" min="0" max="15" step="0.5" value="6" oninput="syncFromRange('sip-inf','sip-inf-manual');calcSIP()" style="width:100%;accent-color:#f59e0b;margin-top:8px">
+            <div class="range-hints"><span>0%</span><span>15%</span></div>
+          </div>
         </div>
         <div class="calc-result">
           <h3>Projected Returns</h3>
-          <div class="result-row"><span class="result-label">Total Amount Invested</span><span class="result-val" id="sip-invested">₹6,00,000</span></div>
-          <div class="result-row"><span class="result-label">Estimated Returns Earned</span><span class="result-val pos" id="sip-returns">₹5,61,695</span></div>
-          <div class="result-row"><span class="result-label">Total Corpus Value</span><span class="result-val big" id="sip-total">₹11,61,695</span></div>
+          <div class="result-row"><span class="result-label">Total Amount Invested</span><span class="result-val" id="sip-invested">—</span></div>
+          <div class="result-row"><span class="result-label">Estimated Returns Earned</span><span class="result-val pos" id="sip-returns">—</span></div>
+          <div class="result-row"><span class="result-label">Total Corpus (Nominal)</span><span class="result-val big" id="sip-total">—</span></div>
+          <div class="result-row inf-row"><span class="result-label inf-label">&#127777;&#65039; Inflation-Adjusted Corpus</span><span class="result-val inf-val" id="sip-real">—</span></div>
+          <div class="result-row"><span class="result-label" style="font-size:10.5px;color:var(--txf)">Real purchasing power in today's money</span></div>
           <div class="calc-chart" id="sip-chart"></div>
-          <div class="calc-note">⚠ These are estimated projections based on assumed returns. Mutual fund investments are subject to market risks. Past performance does not guarantee future results. Please consult your advisor before investing.</div>
+          <div class="calc-note">&#9888; These are estimated projections based on assumed returns. Mutual fund investments are subject to market risks. Past performance does not guarantee future results. Please consult your advisor before investing.</div>
         </div>
       </div>
     </div>
@@ -487,14 +498,25 @@
             <input type="range" id="ls-yrs" min="1" max="40" step="1" value="10" oninput="syncFromRange('ls-yrs','ls-yrs-manual');calcLS()" style="width:100%;accent-color:var(--acc);margin-top:8px">
             <div class="range-hints"><span>1 yr</span><span>40 yrs</span></div>
           </div>
+          <div class="calc-field inf-field">
+            <label>&#127777;&#65039; Inflation Rate (%) <span style="font-size:10px;color:var(--txf);letter-spacing:0;text-transform:none;font-weight:300">for real returns</span></label>
+            <div class="manual-row">
+              <input type="number" id="ls-inf-manual" min="0" max="15" step="0.5" value="6" oninput="syncFromManual('ls-inf','ls-inf-manual',0,15);calcLS()" class="manual-input" style="padding-left:13px">
+              <span class="pct-suffix">%</span>
+            </div>
+            <input type="range" id="ls-inf" min="0" max="15" step="0.5" value="6" oninput="syncFromRange('ls-inf','ls-inf-manual');calcLS()" style="width:100%;accent-color:#f59e0b;margin-top:8px">
+            <div class="range-hints"><span>0%</span><span>15%</span></div>
+          </div>
         </div>
         <div class="calc-result">
           <h3>Projected Returns</h3>
-          <div class="result-row"><span class="result-label">Amount Invested</span><span class="result-val" id="ls-invested">₹1,00,000</span></div>
-          <div class="result-row"><span class="result-label">Estimated Returns Earned</span><span class="result-val pos" id="ls-returns">₹2,10,585</span></div>
-          <div class="result-row"><span class="result-label">Total Corpus Value</span><span class="result-val big" id="ls-total">₹3,10,585</span></div>
-          <div class="result-row"><span class="result-label">Wealth Multiplied By</span><span class="result-val" id="ls-mult">3.1x</span></div>
-          <div class="calc-note">⚠ These are estimated projections based on assumed returns. Mutual fund investments are subject to market risks. Past performance does not guarantee future results.</div>
+          <div class="result-row"><span class="result-label">Amount Invested</span><span class="result-val" id="ls-invested">—</span></div>
+          <div class="result-row"><span class="result-label">Estimated Returns Earned</span><span class="result-val pos" id="ls-returns">—</span></div>
+          <div class="result-row"><span class="result-label">Total Corpus (Nominal)</span><span class="result-val big" id="ls-total">—</span></div>
+          <div class="result-row"><span class="result-label">Wealth Multiplied By</span><span class="result-val" id="ls-mult">—</span></div>
+          <div class="result-row inf-row"><span class="result-label inf-label">&#127777;&#65039; Inflation-Adjusted Corpus</span><span class="result-val inf-val" id="ls-real">—</span></div>
+          <div class="result-row"><span class="result-label" style="font-size:10.5px;color:var(--txf)">Real purchasing power in today's money</span></div>
+          <div class="calc-note">&#9888; These are estimated projections based on assumed returns. Mutual fund investments are subject to market risks. Past performance does not guarantee future results.</div>
         </div>
       </div>
     </div>
@@ -532,14 +554,24 @@
             <input type="range" id="goal-yrs" min="1" max="40" step="1" value="10" oninput="syncFromRange('goal-yrs','goal-yrs-manual');calcGoal()" style="width:100%;accent-color:var(--acc);margin-top:8px">
             <div class="range-hints"><span>1 yr</span><span>40 yrs</span></div>
           </div>
+          <div class="calc-field inf-field">
+            <label>&#127777;&#65039; Inflation Rate (%) <span style="font-size:10px;color:var(--txf);letter-spacing:0;text-transform:none;font-weight:300">adjusts target for rising costs</span></label>
+            <div class="manual-row">
+              <input type="number" id="goal-inf-manual" min="0" max="15" step="0.5" value="6" oninput="syncFromManual('goal-inf','goal-inf-manual',0,15);calcGoal()" class="manual-input" style="padding-left:13px">
+              <span class="pct-suffix">%</span>
+            </div>
+            <input type="range" id="goal-inf" min="0" max="15" step="0.5" value="6" oninput="syncFromRange('goal-inf','goal-inf-manual');calcGoal()" style="width:100%;accent-color:#f59e0b;margin-top:8px">
+            <div class="range-hints"><span>0%</span><span>15%</span></div>
+          </div>
         </div>
         <div class="calc-result">
           <h3>SIP Required</h3>
-          <div class="result-row"><span class="result-label">Monthly SIP Needed</span><span class="result-val big" id="goal-sip">₹4,347</span></div>
-          <div class="result-row"><span class="result-label">Total Amount You'll Invest</span><span class="result-val" id="goal-invested">₹5,21,640</span></div>
-          <div class="result-row"><span class="result-label">Returns Your Money Generates</span><span class="result-val pos" id="goal-returns">₹4,78,360</span></div>
-          <div class="result-row"><span class="result-label">Target Corpus</span><span class="result-val" id="goal-corpus">₹10,00,000</span></div>
-          <div class="calc-note">⚠ These are estimated projections. Actual returns may vary depending on market conditions. Consult Igris Capital for a personalized investment plan.</div>
+          <div class="result-row"><span class="result-label">Goal in Today's Value</span><span class="result-val" id="goal-corpus">—</span></div>
+          <div class="result-row inf-row"><span class="result-label inf-label">&#127777;&#65039; Inflation-Adjusted Target</span><span class="result-val inf-val" id="goal-inf-target">—</span></div>
+          <div class="result-row"><span class="result-label">Monthly SIP Needed</span><span class="result-val big" id="goal-sip">—</span></div>
+          <div class="result-row"><span class="result-label">Total Amount You'll Invest</span><span class="result-val" id="goal-invested">—</span></div>
+          <div class="result-row"><span class="result-label">Returns Your Money Generates</span><span class="result-val pos" id="goal-returns">—</span></div>
+          <div class="calc-note">&#9888; These are estimated projections. Actual returns may vary depending on market conditions. Consult Igris Capital for a personalized investment plan.</div>
         </div>
       </div>
     </div>
@@ -663,6 +695,52 @@
         <div class="fck">✅</div>
         <h4>Enquiry Received!</h4>
         <p>Joy will reach out to you personally within 24 hours to schedule your free 20-minute consultation.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEEDBACK WALL -->
+  <div class="fb-section rev">
+    <div class="stag" style="justify-content:center">Client Feedback</div>
+    <h2 style="text-align:center;margin-bottom:6px">What our <em>clients say</em></h2>
+    <p style="text-align:center;color:var(--txm);font-size:13.5px;font-weight:300;margin-bottom:36px">Share your experience — it helps others make informed decisions.</p>
+    <div class="fb-layout">
+      <div class="fb-form-wrap">
+        <h4>Leave a Review</h4>
+        <div class="fg"><label>Your Name *</label><input type="text" id="fb-name" placeholder="Your full name" maxlength="60"></div>
+        <div style="margin-bottom:16px">
+          <label style="font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--txm);font-weight:500;display:block;margin-bottom:8px">Rating</label>
+          <div class="star-row">
+            <button class="star-btn" data-val="1">&#9733;</button>
+            <button class="star-btn" data-val="2">&#9733;</button>
+            <button class="star-btn" data-val="3">&#9733;</button>
+            <button class="star-btn" data-val="4">&#9733;</button>
+            <button class="star-btn active" data-val="5">&#9733;</button>
+          </div>
+        </div>
+        <div class="fg"><label>Your Feedback *</label><textarea id="fb-text" placeholder="Share your experience with Igris Capital..." maxlength="500" style="min-height:110px"></textarea></div>
+        <button class="btn-p" style="width:100%;border-radius:8px;padding:13px" onclick="submitFeedback()">Submit Feedback &#8594;</button>
+        <p class="f-note" style="margin-top:10px">&#128274; Your feedback is displayed publicly on this page.</p>
+      </div>
+      <div class="fb-wall-wrap">
+        <h4>Recent Reviews</h4>
+        <div id="fb-wall">
+          <div class="fb-card">
+            <div class="fb-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="fb-text">Joy helped me restructure my home loan and start a SIP plan simultaneously. The clarity he brings to complex financial decisions is truly remarkable.</div>
+            <div class="fb-meta"><span class="fb-name">Rajan Shetty</span><span class="fb-date">Mar 2026</span></div>
+          </div>
+          <div class="fb-card">
+            <div class="fb-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="fb-text">First time investing in mutual funds and I was nervous. Joy explained everything patiently with no jargon. Highly recommend Igris Capital.</div>
+            <div class="fb-meta"><span class="fb-name">Priya Nair</span><span class="fb-date">Feb 2026</span></div>
+          </div>
+          <div class="fb-card">
+            <div class="fb-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+            <div class="fb-text">Got my business loan approved within 10 days. The whole process was smooth and I always knew what was happening. Great service.</div>
+            <div class="fb-meta"><span class="fb-name">Arjun Mehta</span><span class="fb-date">Jan 2026</span></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -914,7 +992,7 @@
   </div>
   <div class="footer-bottom">
     <div class="footer-disclaimer">
-      <strong>Regulatory Disclaimer:</strong> Mutual fund investments are subject to market risks. Please read all scheme-related documents carefully before investing. Past performance is not indicative of future returns. Igris Capital is an AMFI Registered Mutual Fund Distributor (ARN Holder) and earns distribution commissions. Insurance is the subject matter of solicitation — Igris Capital operates as a POSP under IRDAI regulations. Loan facilitation is offered as a DSA/referral partner; loans are subject to the lending institution's approval criteria. The information on this website does not constitute investment advice. Igris Capital is not a SEBI-registered Investment Adviser. All calculator outputs are indicative estimates only. <strong>MSME Registered · UDYAM-MH-33-0636264</strong>
+      <strong>Regulatory Disclaimer:</strong> Mutual fund investments are subject to market risks. Please read all scheme-related documents carefully before investing. Past performance is not indicative of future returns. Igris Capital is an AMFI Registered Mutual Fund Distributor (ARN-356525) and earns distribution commissions. Insurance is the subject matter of solicitation — Igris Capital operates as a Point of Sales Person (POSP) under IRDAI regulations. Loan facilitation is offered as a DSA/referral partner; all loans are subject to the lending institution's credit assessment and approval criteria. The information on this website is for general informational purposes only and does not constitute investment, tax, or legal advice. Igris Capital is not a SEBI-registered Investment Adviser. All calculator outputs are indicative estimates only and should not be relied upon as financial projections.
     </div>
     <div class="footer-meta">
       <div class="fcopy">© 2026 Igris Capital. All rights reserved. · Mumbai, Maharashtra, India · MSME: UDYAM-MH-33-0636264</div>
