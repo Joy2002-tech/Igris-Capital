@@ -166,49 +166,119 @@ function calcEMI(){
 calcSIP();calcLS();calcGoal();calcEMI();
 
 
-// FEEDBACK FORM
-async function submitFeedback(){
-  const name=document.getElementById('fb-name')?.value?.trim()||'';
-  const rating=document.querySelector('.star-btn.active')?.dataset?.val||'5';
-  const text=document.getElementById('fb-text')?.value?.trim()||'';
-  if(!name||!text){alert('Please fill in your name and feedback.');return;}
+// FEEDBACK SYSTEM — proper star rating + localStorage persistence
+(function(){
+  const STORAGE_KEY = 'igris-reviews-v2';
+  let selectedRating = 0;
 
-  // Save to Formspree
-  try{
-    await fetch('https://formspree.io/f/xjganlan',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body:JSON.stringify({name:name,rating:rating+' stars',feedback:text})
-    });
-  }catch(e){console.log('Formspree error:',e);}
-
-  // Show feedback card on page
-  const card=document.createElement('div');
-  card.className='fb-card';
-  const stars='★'.repeat(parseInt(rating))+'☆'.repeat(5-parseInt(rating));
-  card.innerHTML=`<div class="fb-stars">${stars}</div><div class="fb-text">${esc(text)}</div><div class="fb-meta"><span class="fb-name">${esc(name)}</span><span class="fb-date">${new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</span></div>`;
-  const wall=document.getElementById('fb-wall');
-  const empty=wall?.querySelector('.fb-empty');
-  if(empty)empty.remove();
-  wall?.prepend(card);
-
-  // Reset form
-  const nameEl=document.getElementById('fb-name');
-  const textEl=document.getElementById('fb-text');
-  if(nameEl)nameEl.value='';
-  if(textEl)textEl.value='';
-  document.querySelectorAll('.star-btn').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('.star-btn').forEach(b=>b.classList.add('active'));
-}
-
-// Star rating buttons
-document.addEventListener('DOMContentLoaded',()=>{
-  document.querySelectorAll('.star-btn').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      const val=parseInt(btn.dataset.val);
-      document.querySelectorAll('.star-btn').forEach((b,i)=>{
-        b.classList.toggle('active',parseInt(b.dataset.val)<=val);
+  // --- Star rating interaction ---
+  function initStars(){
+    const stars = document.querySelectorAll('#star-row .star-btn');
+    stars.forEach(btn=>{
+      btn.addEventListener('mouseenter',()=> highlightStars(parseInt(btn.dataset.val)));
+      btn.addEventListener('mouseleave',()=> highlightStars(selectedRating));
+      btn.addEventListener('click',()=>{
+        selectedRating = parseInt(btn.dataset.val);
+        highlightStars(selectedRating);
+        document.getElementById('star-error').style.display='none';
       });
     });
+  }
+
+  function highlightStars(n){
+    document.querySelectorAll('#star-row .star-btn').forEach(b=>{
+      const v = parseInt(b.dataset.val);
+      b.classList.toggle('active', v <= n);
+    });
+  }
+
+  // --- Load saved reviews from localStorage ---
+  function loadReviews(){
+    try{
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]');
+      if(saved.length>0){
+        document.getElementById('fb-empty-state').style.display='none';
+        saved.forEach(r=>renderCard(r));
+      }
+    }catch(e){}
+  }
+
+  // --- Render a review card ---
+  function renderCard(r){
+    const wall = document.getElementById('fb-wall');
+    const empty = document.getElementById('fb-empty-state');
+    if(empty) empty.style.display='none';
+
+    const card = document.createElement('div');
+    card.className='fb-card';
+    const filled = '★'.repeat(Math.min(5,Math.max(1,parseInt(r.rating)||5)));
+    const empty_s = '☆'.repeat(5 - filled.length);
+    card.innerHTML=`<div class="fb-stars">${filled}<span style="color:var(--txf);opacity:.4">${empty_s}</span></div><div class="fb-text">${esc(r.text)}</div><div class="fb-meta"><span class="fb-name">${esc(r.name)}</span><span class="fb-date">${r.date||''}</span></div>`;
+    wall.prepend(card);
+  }
+
+  // --- Submit ---
+  window.submitFeedbackNew = async function(){
+    const nameEl = document.getElementById('fb-name');
+    const textEl = document.getElementById('fb-text');
+    const btn = document.getElementById('fb-submit-btn');
+    const successMsg = document.getElementById('fb-success-msg');
+
+    const name = nameEl.value.trim();
+    const text = textEl.value.trim();
+
+    // Validate
+    if(!name){ nameEl.focus(); alert('Please enter your name.'); return; }
+    if(!selectedRating){
+      document.getElementById('star-error').style.display='block';
+      return;
+    }
+    if(!text || text.length < 5){ textEl.focus(); alert('Please write at least a short feedback.'); return; }
+
+    btn.textContent = 'Submitting…';
+    btn.disabled = true;
+
+    // Save to Formspree
+    try{
+      await fetch('https://formspree.io/f/xjganlan',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({name, rating: selectedRating+' stars', feedback: text})
+      });
+    }catch(e){ console.warn('Formspree error',e); }
+
+    // Build review object
+    const review = {
+      name,
+      rating: selectedRating,
+      text,
+      date: new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})
+    };
+
+    // Save to localStorage
+    try{
+      const existing = JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]');
+      existing.unshift(review);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(existing.slice(0,50)));
+    }catch(e){}
+
+    // Render card
+    renderCard(review);
+
+    // Reset form
+    nameEl.value='';
+    textEl.value='';
+    selectedRating=0;
+    highlightStars(0);
+    btn.textContent='Submit Feedback →';
+    btn.disabled=false;
+    successMsg.style.display='block';
+    setTimeout(()=>{ successMsg.style.display='none'; }, 5000);
+  };
+
+  // Init on DOM ready
+  document.addEventListener('DOMContentLoaded',()=>{
+    initStars();
+    loadReviews();
   });
-});
+})();
