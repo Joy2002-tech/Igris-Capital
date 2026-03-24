@@ -9,8 +9,9 @@
 <meta name="description" content="Igris Capital — Clarity for Your Financial Decisions. Loans, investments, and protection structured into one coordinated strategy.">
 <title>Igris Capital — Clarity for Your Financial Decisions</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="icon" type="image/png" href="igris-capital-instagram-dp.png">
 <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
 </head>
 <body>
 
@@ -99,8 +100,8 @@
     <div class="hero-c">
       <div class="hero-eye fu">Capital &amp; Wealth Advisory &middot; Mumbai</div>
       <h1 class="fu d1">Clarity for Your<br><em>Financial Decisions.</em></h1>
-      <p class="hero-sub fu d2">Loans, investments, and protection structured into one coordinated strategy, built for long-term stability.</p>
-      <p class="hero-focus fu d3">We are currently focused on building long-term relationships with a limited set of clients - prioritising quality over scale.</p>
+      <p class="hero-sub fu d2">Loans, investments, and protection structured into one coordinated strategy - built for long-term stability.</p>
+      <p class="hero-focus fu d3">We are currently focused on building long-term relationships with a limited set of clients - prioritizing quality over scale.</p>
       <div class="hero-acts fu d4">
         <button class="btn-p" onclick="go('contact')">Book Free Consultation</button>
         <button class="btn-o" onclick="go('services')">Our Services</button>
@@ -112,42 +113,18 @@
   <section class="h-svc">
     <div class="stag rev">What We Offer</div>
     <h2 class="rev">Four pillars of <em>financial strength</em></h2>
-    <div class="pillar-grid rev">
-      <div class="pillar-card" onclick="go('services')">
-        <div class="pillar-num">01</div>
-        <div class="pillar-icon">🏦</div>
-        <h3 class="pillar-title">Capital Structuring</h3>
-        <div class="pillar-role">Loans &amp; Credit Solutions</div>
-        <p class="pillar-desc">We identify the right lender, structure your application, and handle the entire process. You get funded faster and smarter.</p>
-        <div class="pillar-tags"><span>Home Loans</span><span>Business Loans</span><span>Balance Transfers</span></div>
-        <span class="pillar-cta">Explore Services →</span>
+    <div class="svc-tabs rev">
+      <div class="tab-nav">
+        <button class="tab-btn on" onclick="switchTab(0)"><span class="tb-dot dg"></span><div class="tb-info"><span class="tb-name">Capital Structuring</span><span class="tb-sub">Loans &amp; Credit</span></div></button>
+        <button class="tab-btn" onclick="switchTab(1)"><span class="tb-dot db"></span><div class="tb-info"><span class="tb-name">Wealth Creation</span><span class="tb-sub">Investments &amp; MF</span></div></button>
+        <button class="tab-btn" onclick="switchTab(2)"><span class="tb-dot dy"></span><div class="tb-info"><span class="tb-name">Risk Protection</span><span class="tb-sub">Insurance</span></div></button>
+        <button class="tab-btn" onclick="switchTab(3)"><span class="tb-dot dp"></span><div class="tb-info"><span class="tb-name">Support Services</span><span class="tb-sub">Financial Admin</span></div></button>
       </div>
-      <div class="pillar-card" onclick="go('services')">
-        <div class="pillar-num">02</div>
-        <div class="pillar-icon">📈</div>
-        <h3 class="pillar-title">Wealth Creation</h3>
-        <div class="pillar-role">Investments &amp; Mutual Funds</div>
-        <p class="pillar-desc">We align every investment decision with your actual life goals. Fund selection, SIP planning and regular reviews built on clarity.</p>
-        <div class="pillar-tags"><span>SIP Planning</span><span>Goal Investing</span><span>Retirement</span></div>
-        <span class="pillar-cta">Explore Services →</span>
-      </div>
-      <div class="pillar-card" onclick="go('services')">
-        <div class="pillar-num">03</div>
-        <div class="pillar-icon">🛡️</div>
-        <h3 class="pillar-title">Risk Protection</h3>
-        <div class="pillar-role">Insurance &amp; Coverage</div>
-        <p class="pillar-desc">Wealth built without protection is vulnerable. We help you choose the right coverage, explained clearly and never sold aggressively.</p>
-        <div class="pillar-tags"><span>Health Insurance</span><span>Term Insurance</span><span>Motor Insurance</span></div>
-        <span class="pillar-cta">Explore Services →</span>
-      </div>
-      <div class="pillar-card" onclick="go('services')">
-        <div class="pillar-num">04</div>
-        <div class="pillar-icon">📋</div>
-        <h3 class="pillar-title">Support Services</h3>
-        <div class="pillar-role">Financial Admin &amp; More</div>
-        <p class="pillar-desc">The small things matter. We keep your financial life organised with tax filing, credit cards and annual reviews so nothing slips.</p>
-        <div class="pillar-tags"><span>Tax Filing</span><span>Credit Cards</span><span>Annual Reviews</span></div>
-        <span class="pillar-cta">Explore Services →</span>
+      <div class="tab-panels">
+        <div class="tab-panel on"><div class="tp-num">01</div><div class="tp-title">Capital Structuring</div><div class="tp-role">Loans &amp; Credit Solutions</div><div class="tp-desc">We identify the right lender, structure your application, and handle the entire process - so you get funded faster and smarter.</div><div class="tp-items"><span class="tp-tag">Personal Loans</span><span class="tp-tag">Business Loans</span><span class="tp-tag">Home Loans</span><span class="tp-tag">Loan Against Property</span><span class="tp-tag">Balance Transfers</span></div></div>
+        <div class="tab-panel"><div class="tp-num">02</div><div class="tp-title">Wealth Creation</div><div class="tp-role">Mutual Funds &amp; Investments</div><div class="tp-desc">We align every investment decision with your actual life goals - fund selection, SIP planning, and regular reviews built on clarity.</div><div class="tp-items"><span class="tp-tag">Mutual Fund Distribution (ARN)</span><span class="tp-tag">SIP Planning</span><span class="tp-tag">Goal-Based Investing</span><span class="tp-tag">Retirement Planning</span><span class="tp-tag">Portfolio Review</span></div></div>
+        <div class="tab-panel"><div class="tp-num">03</div><div class="tp-title">Risk Protection</div><div class="tp-role">Insurance &amp; Coverage</div><div class="tp-desc">Wealth built without protection is vulnerable. We help you choose the right coverage - explained clearly, not sold aggressively.</div><div class="tp-items"><span class="tp-tag">Health Insurance</span><span class="tp-tag">Term Insurance</span><span class="tp-tag">Family Protection Planning</span><span class="tp-tag">Motor Insurance</span></div></div>
+        <div class="tab-panel"><div class="tp-num">04</div><div class="tp-title">Support Services</div><div class="tp-role">Financial Admin &amp; More</div><div class="tp-desc">The small things matter. We keep your financial life organized - tax filing, credit cards, and annual reviews so nothing slips.</div><div class="tp-items"><span class="tp-tag">Credit Cards</span><span class="tp-tag">Tax Filing Assistance</span><span class="tp-tag">Annual Financial Reviews</span></div></div>
       </div>
     </div>
   </section>
@@ -191,14 +168,14 @@
         <div class="stag">Start Here</div>
         <h2>Not sure where to <em>begin?</em></h2>
         <div class="gline"></div>
-        <p>Most people come to us overwhelmed. Too many products, too much noise, too little clarity. That's exactly the problem we solve.</p>
+        <p>Most people come to us overwhelmed - too many products, too much noise, too little clarity. That's exactly the problem we solve.</p>
         <p><strong>A 20-minute conversation is all it takes</strong> to get a clear view of where you stand and what your next step should be.</p>
         <p>No obligation. No paperwork. Just clarity.</p>
         <button class="btn-p" onclick="go('contact')">Book Free Consultation</button>
       </div>
       <div class="edu-focus rev">
         <h4>What to expect in your first call</h4>
-        <p>We'll ask about your income, current loans, savings, and what you're trying to achieve. Based on that, we'll outline a structured approach: loans, investments or insurance, with clear next steps.</p>
+        <p>We'll ask about your income, current loans, savings, and what you're trying to achieve. Based on that, we'll outline a structured approach - loans, investments, or insurance - with clear next steps.</p>
         <div class="early-tag">No pressure. No commitments.</div>
       </div>
     </div>
@@ -230,7 +207,7 @@
         <div class="svc-r-num">01</div>
         <h3>Capital Structuring</h3>
         <div class="svc-r-role">Loans &amp; Credit Solutions</div>
-        <p>We identify the right lender, structure your application, and handle the entire loan journey so you get funded faster and smarter.</p>
+        <p>We identify the right lender, structure your application, and handle the entire loan journey - so you get funded faster and smarter.</p>
       </div>
       <div class="svc-cards rev">
         <div class="svc-c"><div class="si">🏠</div><h5>Home Loans</h5><p>End-to-end home loan assistance with the right bank at the best rate.</p></div>
@@ -245,7 +222,7 @@
         <div class="svc-r-num">02</div>
         <h3>Wealth Creation</h3>
         <div class="svc-r-role">Mutual Funds &amp; Investments</div>
-        <p>Goal-based investing through mutual funds and SIPs. Every decision aligned with your actual life, not generic benchmarks.</p>
+        <p>Goal-based investing through mutual funds and SIPs - every decision aligned with your actual life, not generic benchmarks.</p>
       </div>
       <div class="svc-cards rev">
         <div class="svc-c"><div class="si">📈</div><h5>Mutual Fund Distribution</h5><p>ARN-registered distributor. Direct and regular plan guidance.</p></div>
@@ -260,7 +237,7 @@
         <div class="svc-r-num">03</div>
         <h3>Risk Protection</h3>
         <div class="svc-r-role">Insurance &amp; Coverage</div>
-        <p>Wealth built without protection is vulnerable. We help you choose the right coverage, explained clearly and never sold aggressively.</p>
+        <p>Wealth built without protection is vulnerable. We help you choose the right coverage - explained clearly, never sold aggressively.</p>
       </div>
       <div class="svc-cards rev">
         <div class="svc-c"><div class="si">🏥</div><h5>Health Insurance</h5><p>Comprehensive health cover for individuals and families.</p></div>
@@ -298,8 +275,8 @@
     <div class="about-grid">
       <div class="at rev">
         <div class="stag">Our Story</div>
-        <p>Igris Capital was founded with a simple belief: <strong>most people don't need more financial products. They need better financial clarity.</strong></p>
-        <p>In a market flooded with agents chasing quotas, we chose a different path: building a firm where every recommendation starts with a question, not a product pitch.</p>
+        <p>Igris Capital was founded with a simple belief: <strong>most people don't need more financial products - they need better financial clarity.</strong></p>
+        <p>In a market flooded with agents chasing quotas, we chose a different path - building a firm where every recommendation starts with a question, not a product pitch.</p>
         <p>We work with a limited number of clients deliberately, because <strong>quality of advice demands depth of relationship.</strong> We are not building volume. We are building trust.</p>
         <div class="qbox"><p>"Most financial decisions go wrong not because of bad math, but because of unclear priorities."</p></div>
       </div>
@@ -319,7 +296,7 @@
     <h2 class="rev">Advisors, not <em>salespeople</em></h2>
     <div class="diff-grid">
       <div class="diff-left rev">
-        <p>We don't lead with products. We lead with questions about your goals, your situation, your timeline. Only then do we recommend.</p>
+        <p>We don't lead with products. We lead with questions — about your goals, your situation, your timeline. Only then do we recommend.</p>
         <p>In a market full of agents pushing quotas, <strong>we've chosen to be advisors building relationships.</strong> Every client gets honest, jargon-free explanations before anything is executed.</p>
         <div class="phil-q"><p>"Good financial decisions start with clarity, not confidence."</p><cite>— Joy Mendonsa, Founder</cite></div>
       </div>
@@ -668,7 +645,7 @@
   <div class="contact-body">
     <div class="ci-b rev">
       <h3>We're here to help</h3>
-      <p>Every enquiry gets a personal response from Joy directly. No bots, no call centres, no outsourcing.</p>
+      <p>Every enquiry gets a personal response from Joy directly — no bots, no call centres, no outsourcing.</p>
       <div class="ci-list">
         <div class="ci-item"><span class="cii">📍</span><span>Mumbai, Maharashtra, India</span></div>
         <div class="ci-item"><span class="cii">✉️</span><span><a href="/cdn-cgi/l/email-protection#f59f9a8cb59c92879c869694859c819499db9c9b" style="color:var(--txm);text-decoration:none"><span class="__cf_email__" data-cfemail="157f7a6c557c72677c667674657c6174793b7c7b">[email&#160;protected]</span></a></span></div>
@@ -734,10 +711,10 @@
         <div style="margin-bottom:16px">
           <label style="font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--txm);font-weight:500;display:block;margin-bottom:8px">Rating</label>
           <div class="star-row">
-            <button class="star-btn active" data-val="1">&#9733;</button>
-            <button class="star-btn active" data-val="2">&#9733;</button>
-            <button class="star-btn active" data-val="3">&#9733;</button>
-            <button class="star-btn active" data-val="4">&#9733;</button>
+            <button class="star-btn" data-val="1">&#9733;</button>
+            <button class="star-btn" data-val="2">&#9733;</button>
+            <button class="star-btn" data-val="3">&#9733;</button>
+            <button class="star-btn" data-val="4">&#9733;</button>
             <button class="star-btn active" data-val="5">&#9733;</button>
           </div>
         </div>
@@ -750,7 +727,7 @@
         <div id="fb-wall">
           <div class="fb-empty">
             <div class="fb-empty-icon">&#9733;</div>
-            <p>No reviews yet. Be the first to share your experience!</p>
+            <p>No reviews yet — be the first to share your experience!</p>
           </div>
         </div>
       </div>
