@@ -39,7 +39,6 @@ nav.scrolled{background:var(--navbg);box-shadow:0 1px 0 var(--bdr);backdrop-filt
 
 /* UTILITY */
 .stag{display:inline-flex;align-items:center;gap:9px;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--acc);margin-bottom:16px;font-weight:400}
-.stag::before{content:'';width:20px;height:1px;background:var(--acc)}
 h2{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.6vw,48px);font-weight:300;line-height:1.1;color:var(--txt);letter-spacing:-.01em}
 h2 em{font-style:italic;color:var(--acc)}
 .gline{width:40px;height:1px;background:linear-gradient(to right,var(--acc),transparent);margin:20px 0}
@@ -84,15 +83,18 @@ h1 em{font-style:italic;color:var(--acc)}
 
 /* PROCESS */
 .process{padding:90px 52px;border-top:1px solid var(--bdr);background:var(--bg2)}
-.steps{display:flex;flex-direction:column;gap:0;margin-top:44px;position:relative}
+.steps{display:flex;flex-direction:column;gap:0;margin-top:44px;position:relative;max-width:800px}
 .steps::before{content:'';position:absolute;left:28px;top:0;bottom:0;width:1px;background:var(--bdr)}
-.step{display:flex;align-items:flex-start;gap:28px;padding-bottom:36px;position:relative}
+.step{display:flex;align-items:flex-start;gap:28px;padding-bottom:40px;position:relative}
 .step:last-child{padding-bottom:0}
 .step-num{width:56px;height:56px;border-radius:50%;background:var(--surf);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:1}
 .step-num span{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--acc)}
 .step-body{padding-top:14px}
-.step-body h4{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--txt);margin-bottom:6px}
-.step-body p{font-size:13.5px;color:var(--txm);line-height:1.75;font-weight:300}
+.step-body h4{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--txt);margin-bottom:7px}
+.step-body p{font-size:14px;color:var(--txm);line-height:1.8;font-weight:300}
+
+/* SOLO TEAM (founder only) */
+.team-solo{grid-template-columns:1fr;max-width:720px}
 
 /* WHO */
 .who{padding:90px 52px;border-top:1px solid var(--bdr)}
