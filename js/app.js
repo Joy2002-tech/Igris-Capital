@@ -68,7 +68,6 @@ async function submitForm(){
     `*Message:* ${message}`;
   const waUrl='https://wa.me/918928793627?text='+encodeURIComponent(text);
   window.open(waUrl,'_blank');
-  setTimeout(()=>{btn.textContent='Send Enquiry \u2192';btn.disabled=false;},3000);
   document.getElementById('f-fields').style.display='none';
   document.getElementById('f-success').style.display='block';
 }
@@ -76,7 +75,7 @@ async function submitForm(){
 // ── CALCULATORS ──
 function fmt(n){return '₹'+Math.round(n).toLocaleString('en-IN');}
 function fmtK(n){if(n>=10000000)return '₹'+(n/10000000).toFixed(2)+' Cr';if(n>=100000)return '₹'+(n/100000).toFixed(2)+' L';return fmt(n);}
-function getVal(id){return parseFloat(document.getElementById(id)?.value)||0;}
+function getVal(id){return parseFloat(document.getElementById(id).value)||0;}
 
 function syncFromRange(rangeId,manualId){
   document.getElementById(manualId).value=document.getElementById(rangeId).value;
@@ -145,7 +144,6 @@ function calcGoal(){
   const targetNominal=Math.max(1000,getVal('goal-target-manual'));
   const inf=getVal('goal-inf-manual')||0;
   const yrs=Math.max(1,getVal('goal-yrs-manual'));
-  // Inflate the target to future value in nominal terms
   const inflatedTarget=targetNominal*Math.pow(1+inf/100,yrs);
   const r=Math.max(0.01,getVal('goal-rate-manual'))/100/12;
   const n=yrs*12;
@@ -175,11 +173,28 @@ calcSIP();calcLS();calcGoal();calcEMI();
 
 
 // FEEDBACK FORM
-function submitFeedback(){
+async function submitFeedback(){
   const name=document.getElementById('fb-name')?.value?.trim()||'';
   const rating=document.querySelector('.star-btn.active')?.dataset?.val||'5';
   const text=document.getElementById('fb-text')?.value?.trim()||'';
   if(!name||!text){alert('Please fill in your name and feedback.');return;}
+
+  // Save to Formspree
+  try{
+    await fetch('https://formspree.io/f/xjganlan',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        name: name,
+        rating: rating+' stars',
+        feedback: text
+      })
+    });
+  }catch(e){
+    console.log('Formspree error:',e);
+  }
+
+  // Show feedback card on page
   const card=document.createElement('div');
   card.className='fb-card';
   const stars='★'.repeat(parseInt(rating))+'☆'.repeat(5-parseInt(rating));
@@ -188,6 +203,7 @@ function submitFeedback(){
   const empty=wall?.querySelector('.fb-empty');
   if(empty)empty.remove();
   wall?.prepend(card);
+
   // Reset form
   const nameEl=document.getElementById('fb-name');
   const textEl=document.getElementById('fb-text');
