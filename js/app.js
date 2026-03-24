@@ -11,12 +11,6 @@ function applyTheme(t){root.setAttribute('data-theme',t);tBtn.textContent=t==='d
 applyTheme(localStorage.getItem('ic-theme')||'light');
 tBtn.addEventListener('click',()=>applyTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'));
 
-// SERVICE TABS
-function switchTab(idx){
-  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('on',i===idx));
-  document.querySelectorAll('.tab-panel').forEach((p,i)=>p.classList.toggle('on',i===idx));
-}
-
 // CALC TABS
 function switchCalc(idx){
   document.querySelectorAll('.calc-tab-btn').forEach((b,i)=>b.classList.toggle('on',i===idx));
@@ -184,15 +178,9 @@ async function submitFeedback(){
     await fetch('https://formspree.io/f/xjganlan',{
       method:'POST',
       headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body:JSON.stringify({
-        name: name,
-        rating: rating+' stars',
-        feedback: text
-      })
+      body:JSON.stringify({name:name,rating:rating+' stars',feedback:text})
     });
-  }catch(e){
-    console.log('Formspree error:',e);
-  }
+  }catch(e){console.log('Formspree error:',e);}
 
   // Show feedback card on page
   const card=document.createElement('div');
@@ -210,8 +198,7 @@ async function submitFeedback(){
   if(nameEl)nameEl.value='';
   if(textEl)textEl.value='';
   document.querySelectorAll('.star-btn').forEach(b=>b.classList.remove('active'));
-  const lastStar=document.querySelector('.star-btn[data-val="5"]');
-  if(lastStar)lastStar.classList.add('active');
+  document.querySelectorAll('.star-btn').forEach(b=>b.classList.add('active'));
 }
 
 // Star rating buttons
