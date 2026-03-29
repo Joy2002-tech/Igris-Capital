@@ -282,3 +282,62 @@ calcSIP();calcLS();calcGoal();calcEMI();
     loadReviews();
   });
 })();
+
+// ── HERO STATS ADMIN ──
+const STATS_KEY = 'igris-stats-v1';
+
+function loadStats(){
+  const defaults = {aum:'12', loans:'8', ins:'50'};
+  let stats = defaults;
+  try {
+    const saved = JSON.parse(localStorage.getItem(STATS_KEY));
+    if(saved) stats = {...defaults, ...saved};
+  } catch(e){}
+  document.getElementById('aum-val').textContent   = stats.aum;
+  document.getElementById('loans-val').textContent = stats.loans;
+  document.getElementById('ins-val').textContent   = stats.ins;
+  // pre-fill admin inputs
+  const ai = document.getElementById('admin-aum');
+  if(ai){ ai.value = stats.aum; }
+  const li = document.getElementById('admin-loans');
+  if(li){ li.value = stats.loans; }
+  const ii = document.getElementById('admin-ins');
+  if(ii){ ii.value = stats.ins; }
+}
+
+function saveAdminStats(){
+  const aum   = document.getElementById('admin-aum').value   || '12';
+  const loans = document.getElementById('admin-loans').value || '8';
+  const ins   = document.getElementById('admin-ins').value   || '50';
+  localStorage.setItem(STATS_KEY, JSON.stringify({aum, loans, ins}));
+  document.getElementById('aum-val').textContent   = aum;
+  document.getElementById('loans-val').textContent = loans;
+  document.getElementById('ins-val').textContent   = ins;
+  closeAdmin();
+  // brief flash confirmation
+  const stats = document.querySelector('.hero-stats');
+  if(stats){ stats.style.outline='2px solid var(--acc)'; setTimeout(()=>stats.style.outline='',1200); }
+}
+
+function openAdmin(){
+  loadStats();
+  document.getElementById('admin-overlay').style.display='block';
+  document.getElementById('admin-panel').style.display='block';
+  document.body.style.overflow='hidden';
+}
+function closeAdmin(){
+  document.getElementById('admin-overlay').style.display='none';
+  document.getElementById('admin-panel').style.display='none';
+  document.body.style.overflow='';
+}
+
+// Open admin on URL hash #admin-igris
+function checkAdminHash(){
+  if(location.hash==='#admin-igris'){ openAdmin(); history.replaceState(null,'',location.pathname); }
+}
+window.addEventListener('hashchange', checkAdminHash);
+checkAdminHash();
+
+// Load stats on page load
+document.addEventListener('DOMContentLoaded', loadStats);
+loadStats();
