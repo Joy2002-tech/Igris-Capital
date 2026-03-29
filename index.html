@@ -87,44 +87,42 @@
 <div class="page active" id="page-home">
   <section class="hero">
     <div class="hero-bg"></div>
-    <div class="hero-geo" aria-hidden="true">
-      <svg viewBox="0 0 290 290" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="145,6 284,145 145,284 6,145" stroke="var(--acc)" stroke-width="1" opacity="0.22"/>
-        <polygon points="145,44 246,145 145,246 44,145" stroke="var(--acc)" stroke-width="1" opacity="0.14"/>
-        <polygon points="145,82 208,145 145,208 82,145" stroke="var(--acc)" stroke-width="1" opacity="0.08"/>
-        <line x1="145" y1="6" x2="145" y2="284" stroke="var(--acc)" stroke-width="0.5" opacity="0.1"/>
-        <line x1="6" y1="145" x2="284" y2="145" stroke="var(--acc)" stroke-width="0.5" opacity="0.1"/>
-      </svg>
-    </div>
-    <div class="hero-c">
-      <div class="hero-eye fu">Capital &amp; Wealth Advisory &middot; Mumbai</div>
-      <h1 class="fu d1">Clarity for Your<br><em>Financial Decisions.</em></h1>
-      <p class="hero-sub fu d2">Loans, investments, and protection structured into one coordinated strategy - built for long-term stability.</p>
-      <p class="hero-focus fu d3">We are currently focused on building long-term relationships with a limited set of clients - prioritizing quality over scale.</p>
-      <div class="hero-acts fu d4">
-        <button class="btn-p" onclick="go('contact')">Book Free Consultation</button>
-        <button class="btn-o" onclick="go('services')">Our Services</button>
+
+    <div class="hero-inner">
+
+      <!-- LEFT: text content -->
+      <div class="hero-c">
+        <div class="hero-eye fu">Capital &amp; Wealth Advisory &middot; Mumbai</div>
+        <h1 class="fu d1">Clarity for Your<br><em>Financial Decisions.</em></h1>
+        <p class="hero-sub fu d2">Loans, investments, and protection structured into one coordinated strategy - built for long-term stability.</p>
+        <p class="hero-focus fu d3">We are currently focused on building long-term relationships with a limited set of clients - prioritizing quality over scale.</p>
+        <div class="hero-acts fu d4">
+          <button class="btn-p" onclick="go('contact')">Book Free Consultation</button>
+          <button class="btn-o" onclick="go('services')">Our Services</button>
+        </div>
       </div>
 
-      <!-- HERO STATS -->
-      <div class="hero-stats fu d5">
-        <div class="hstat">
-          <div class="hstat-val">₹<span id="aum-val">12</span> Cr+</div>
+      <!-- RIGHT: stats cards -->
+      <div class="hero-stats-col fu d2">
+        <div class="hstat-card" id="hstat-aum">
+          <div class="hstat-icon">📊</div>
+          <div class="hstat-val" id="aum-display">₹12 Cr+</div>
           <div class="hstat-label">Assets Under Advisory</div>
         </div>
-        <div class="hstat-div"></div>
-        <div class="hstat">
-          <div class="hstat-val">₹<span id="loans-val">8</span> Cr+</div>
+        <div class="hstat-card" id="hstat-loans">
+          <div class="hstat-icon">🏦</div>
+          <div class="hstat-val" id="loans-display">₹8 Cr+</div>
           <div class="hstat-label">Loans Disbursed</div>
         </div>
-        <div class="hstat-div"></div>
-        <div class="hstat">
-          <div class="hstat-val"><span id="ins-val">50</span>+</div>
+        <div class="hstat-card" id="hstat-ins">
+          <div class="hstat-icon">🛡️</div>
+          <div class="hstat-val" id="ins-display">50+</div>
           <div class="hstat-label">Insurance Policies</div>
         </div>
       </div>
 
-    </div>
+    </div><!-- /hero-inner -->
+
     <div class="scroll-hint">Scroll to explore</div>
   </section>
 
@@ -143,7 +141,7 @@
         <div class="pillar-body">
           <div class="pillar-title">Capital Structuring</div>
           <div class="pillar-role">Loans &amp; Credit Solutions</div>
-          <div class="pillar-desc">We identify the right lender, structure your application, and handle the entire process — so you get funded faster and smarter.</div>
+          <div class="pillar-desc">We identify the right lender, structure your application, and handle the entire process, so you get funded faster and smarter.</div>
           <div class="pillar-tags"><span>Personal Loans</span><span>Business Loans</span><span>Home Loans</span><span>LAP</span><span>Balance Transfers</span></div>
           <div class="pillar-cta">Explore →</div>
         </div>
@@ -159,7 +157,7 @@
         <div class="pillar-body">
           <div class="pillar-title">Wealth Creation</div>
           <div class="pillar-role">Mutual Funds &amp; Investments</div>
-          <div class="pillar-desc">We align every investment decision with your actual life goals — fund selection, SIP planning, and regular reviews built on clarity.</div>
+          <div class="pillar-desc">We align every investment decision with your actual life goals: fund selection, SIP planning, and regular reviews built on clarity.</div>
           <div class="pillar-tags"><span>MF Distribution</span><span>SIP Planning</span><span>Goal-Based</span><span>Retirement</span><span>Portfolio Review</span></div>
           <div class="pillar-cta">Explore →</div>
         </div>
@@ -175,7 +173,7 @@
         <div class="pillar-body">
           <div class="pillar-title">Risk Protection</div>
           <div class="pillar-role">Insurance &amp; Coverage</div>
-          <div class="pillar-desc">Wealth built without protection is vulnerable. We help you choose the right coverage — explained clearly, never sold aggressively.</div>
+          <div class="pillar-desc">Wealth built without protection is vulnerable. We help you choose the right coverage, explained clearly and never sold aggressively.</div>
           <div class="pillar-tags"><span>Health Insurance</span><span>Term Insurance</span><span>Family Protection</span><span>Motor Insurance</span></div>
           <div class="pillar-cta">Explore →</div>
         </div>
@@ -191,7 +189,7 @@
         <div class="pillar-body">
           <div class="pillar-title">Support Services</div>
           <div class="pillar-role">Financial Admin &amp; More</div>
-          <div class="pillar-desc">The small things matter. We keep your financial life organized — tax filing, credit cards, and annual reviews so nothing slips.</div>
+          <div class="pillar-desc">The small things matter. We keep your financial life organized: tax filing, credit cards, and annual reviews so nothing slips.</div>
           <div class="pillar-tags"><span>Credit Cards</span><span>Tax Filing</span><span>Annual Review</span></div>
           <div class="pillar-cta">Explore →</div>
         </div>
@@ -218,7 +216,7 @@
       <div class="flow-card">
         <div class="flow-icon">🎧</div>
         <h4>Understand Your Current Situation</h4>
-        <p>We start by listening — income, liabilities, goals, and existing commitments. No assumptions, no templates. Every client's situation is unique and we treat it that way.</p>
+        <p>We start by listening: income, liabilities, goals, and existing commitments. No assumptions, no templates. Every client's situation is unique and we treat it that way.</p>
       </div>
       <div class="flow-card">
         <div class="flow-icon">🔍</div>
@@ -228,12 +226,12 @@
       <div class="flow-card">
         <div class="flow-icon">📋</div>
         <h4>Build a Structured Plan</h4>
-        <p>A clear, practical roadmap — not jargon-heavy reports. Every recommendation is explained before anything is executed. You stay in control at every step.</p>
+        <p>A clear, practical roadmap, not jargon-heavy reports. Every recommendation is explained before anything is executed. You stay in control at every step.</p>
       </div>
       <div class="flow-card">
         <div class="flow-icon">⚡</div>
         <h4>Execute Across Products</h4>
-        <p>We handle the process end-to-end — applications, documentation, coordination so you don't have to chase anyone. One advisor, one point of contact.</p>
+        <p>We handle the process end-to-end: applications, documentation, coordination so you don't have to chase anyone. One advisor, one point of contact.</p>
       </div>
       <div class="flow-card">
         <div class="flow-icon">🎯</div>
@@ -398,7 +396,7 @@
     <h2 class="rev">Advisors, not <em>salespeople</em></h2>
     <div class="diff-grid">
       <div class="diff-left rev">
-        <p>We don't lead with products. We lead with questions — about your goals, your situation, your timeline. Only then do we recommend.</p>
+        <p>We don't lead with products. We lead with questions about your goals, your situation, your timeline. Only then do we recommend.</p>
         <p>In a market full of agents pushing quotas, <strong>we've chosen to be advisors building relationships.</strong> Every client gets honest, jargon-free explanations before anything is executed.</p>
         <div class="phil-q"><p>"Good financial decisions start with clarity, not confidence."</p><cite>— Joy Mendonsa, Founder</cite></div>
       </div>
@@ -406,7 +404,7 @@
         <div class="diff-item"><div class="diff-dot"></div><div class="diff-item-body"><h5>Advice-First Approach</h5><p>We understand fully before we recommend anything. No pressure, no agenda.</p></div></div>
         <div class="diff-item"><div class="diff-dot"></div><div class="diff-item-body"><h5>Clear Explanations - No Jargon</h5><p>Every product explained in plain language you can act on confidently.</p></div></div>
         <div class="diff-item"><div class="diff-dot"></div><div class="diff-item-body"><h5>Practical Execution Support</h5><p>We don't just advise and step back. We handle the process end-to-end with you.</p></div></div>
-        <div class="diff-item"><div class="diff-dot"></div><div class="diff-item-body"><h5>Long-Term Planning Mindset</h5><p>We're here for the next decade of your financial life — not just the next transaction.</p></div></div>
+        <div class="diff-item"><div class="diff-dot"></div><div class="diff-item-body"><h5>Long-Term Planning Mindset</h5><p>We're here for the next decade of your financial life, not just the next transaction.</p></div></div>
       </div>
     </div>
   </section>
@@ -436,22 +434,24 @@
         <div class="fpn-name-block">
           <div class="fpn-name">Joy Mendonsa</div>
           <div class="fpn-role">Founder &amp; Financial Advisor</div>
-          <div class="fpn-location">📍 Mumbai, Maharashtra</div>
+          <div class="fpn-location">📍 Mira Bhayandar, Mumbai · Maharashtra</div>
         </div>
       </div>
       <div class="fpn-content-col">
         <div class="fpn-story">
           <div class="stag" style="margin-bottom:16px">His Story</div>
-          <p>Joy founded Igris Capital with a single conviction: <strong>financial advice should start with understanding, not with selling.</strong> With experience across mutual fund distribution, insurance planning, and loan structuring, Joy brings a rare ability to see the full financial picture — and communicate it plainly.</p>
-          <p style="margin-top:14px">In a market flooded with agents chasing quotas, Joy chose a different path — building a firm where every recommendation starts with a question, not a product pitch. Every client advisory relationship is led personally by Joy, with no outsourcing, no call centres, no bots.</p>
+          <p>Joy founded Igris Capital with a single conviction: <strong>financial advice should start with understanding, not with selling.</strong> With experience across mutual fund distribution, insurance planning, and loan structuring, Joy brings a rare ability to see the full financial picture and communicate it plainly.</p>
+          <p style="margin-top:14px">In a market flooded with agents chasing quotas, Joy chose a different path: building a firm where every recommendation starts with a question, not a product pitch. Every client advisory relationship is led personally by Joy, with no outsourcing, no call centres, no bots.</p>
           <div class="founder-phil" style="margin-top:22px"><p>"I started Igris Capital because I believed clients deserved an advisor who asks before they answer."</p><cite>— Joy Mendonsa</cite></div>
         </div>
 
         <div class="fpn-creds-grid">
-          <div class="fpn-cred"><span class="fpn-ci">🎓</span><div><strong>MBA Graduate</strong><br><span>Finance &amp; Management</span></div></div>
-          <div class="fpn-cred"><span class="fpn-ci">📊</span><div><strong>AMFI Registered</strong><br><span>MF Distributor · ARN Holder</span></div></div>
+          <div class="fpn-cred"><span class="fpn-ci">🎓</span><div><strong>PGDM</strong><br><span>SFIMAR, Mumbai · 2024–2026</span></div></div>
+          <div class="fpn-cred"><span class="fpn-ci">📊</span><div><strong>AMFI Registered MFD</strong><br><span>ARN-356525 · EUIN: E680309</span></div></div>
           <div class="fpn-cred"><span class="fpn-ci">🛡️</span><div><strong>POSP Licensed</strong><br><span>Life &amp; Non-Life Insurance</span></div></div>
           <div class="fpn-cred"><span class="fpn-ci">🏦</span><div><strong>DSA Partner</strong><br><span>HDFC · ICICI · Axis · Bajaj</span></div></div>
+          <div class="fpn-cred"><span class="fpn-ci">🏢</span><div><strong>MSME Registered</strong><br><span>UDYAM-MH-33-0636264</span></div></div>
+          <div class="fpn-cred"><span class="fpn-ci">📋</span><div><strong>Shop Act (Gumasta)</strong><br><span>ID: 103111522603</span></div></div>
         </div>
 
         <div class="fpn-tags">
@@ -533,22 +533,30 @@
             <input type="range" id="sip-yrs" min="1" max="40" step="1" value="10" oninput="syncFromRange('sip-yrs','sip-yrs-manual');calcSIP()" style="width:100%;accent-color:var(--acc);margin-top:8px">
             <div class="range-hints"><span>1 yr</span><span>40 yrs</span></div>
           </div>
-          <div class="calc-field inf-field">
-            <label>&#127777;&#65039; Inflation Rate (%) <span style="font-size:10px;color:var(--txf);letter-spacing:0;text-transform:none;font-weight:300">for real returns</span></label>
-            <div class="manual-row">
-              <input type="number" id="sip-inf-manual" min="0" max="15" step="0.5" value="6" oninput="syncFromManual('sip-inf','sip-inf-manual',0,15);calcSIP()" class="manual-input" style="padding-left:13px">
-              <span class="pct-suffix">%</span>
+          <div class="calc-field inf-field" id="sip-inf-wrap">
+            <div class="inf-toggle-row">
+              <label style="margin:0">&#127777;&#65039; Inflation Adjustment <span style="font-size:10px;color:var(--txf);letter-spacing:0;text-transform:none;font-weight:300">real returns</span></label>
+              <label class="tog-switch">
+                <input type="checkbox" id="sip-inf-on" checked onchange="toggleInf('sip')">
+                <span class="tog-slider"></span>
+              </label>
             </div>
-            <input type="range" id="sip-inf" min="0" max="15" step="0.5" value="6" oninput="syncFromRange('sip-inf','sip-inf-manual');calcSIP()" style="width:100%;accent-color:#f59e0b;margin-top:8px">
-            <div class="range-hints"><span>0%</span><span>15%</span></div>
+            <div id="sip-inf-controls">
+              <div class="manual-row" style="margin-top:10px">
+                <input type="number" id="sip-inf-manual" min="0" max="15" step="0.5" value="6" oninput="syncFromManual('sip-inf','sip-inf-manual',0,15);calcSIP()" class="manual-input" style="padding-left:13px">
+                <span class="pct-suffix">%</span>
+              </div>
+              <input type="range" id="sip-inf" min="0" max="15" step="0.5" value="6" oninput="syncFromRange('sip-inf','sip-inf-manual');calcSIP()" style="width:100%;accent-color:#f59e0b;margin-top:8px">
+              <div class="range-hints"><span>0%</span><span>15%</span></div>
+            </div>
           </div>
         </div>
         <div class="calc-result">
           <h3>Projected Returns</h3>
-          <div class="result-row"><span class="result-label">Total Amount Invested</span><span class="result-val" id="sip-invested">—</span></div>
-          <div class="result-row"><span class="result-label">Estimated Returns Earned</span><span class="result-val pos" id="sip-returns">—</span></div>
-          <div class="result-row"><span class="result-label">Total Corpus (Nominal)</span><span class="result-val big" id="sip-total">—</span></div>
-          <div class="result-row inf-row"><span class="result-label inf-label">&#127777;&#65039; Inflation-Adjusted Corpus</span><span class="result-val inf-val" id="sip-real">—</span></div>
+          <div class="result-row"><span class="result-label">Total Amount Invested</span><span class="result-val" id="sip-invested">...</span></div>
+          <div class="result-row"><span class="result-label">Estimated Returns Earned</span><span class="result-val pos" id="sip-returns">...</span></div>
+          <div class="result-row"><span class="result-label">Total Corpus (Nominal)</span><span class="result-val big" id="sip-total">...</span></div>
+          <div class="result-row inf-row"><span class="result-label inf-label">&#127777;&#65039; Inflation-Adjusted Corpus</span><span class="result-val inf-val" id="sip-real">...</span></div>
           <div class="result-row"><span class="result-label" style="font-size:10.5px;color:var(--txf)">Real purchasing power in today's money</span></div>
           <div class="calc-chart" id="sip-chart"></div>
           <div class="calc-note">&#9888; These are estimated projections based on assumed returns. Mutual fund investments are subject to market risks. Past performance does not guarantee future results. Please consult your advisor before investing.</div>
@@ -589,23 +597,31 @@
             <input type="range" id="ls-yrs" min="1" max="40" step="1" value="10" oninput="syncFromRange('ls-yrs','ls-yrs-manual');calcLS()" style="width:100%;accent-color:var(--acc);margin-top:8px">
             <div class="range-hints"><span>1 yr</span><span>40 yrs</span></div>
           </div>
-          <div class="calc-field inf-field">
-            <label>&#127777;&#65039; Inflation Rate (%) <span style="font-size:10px;color:var(--txf);letter-spacing:0;text-transform:none;font-weight:300">for real returns</span></label>
-            <div class="manual-row">
-              <input type="number" id="ls-inf-manual" min="0" max="15" step="0.5" value="6" oninput="syncFromManual('ls-inf','ls-inf-manual',0,15);calcLS()" class="manual-input" style="padding-left:13px">
-              <span class="pct-suffix">%</span>
+          <div class="calc-field inf-field" id="ls-inf-wrap">
+            <div class="inf-toggle-row">
+              <label style="margin:0">&#127777;&#65039; Inflation Adjustment <span style="font-size:10px;color:var(--txf);letter-spacing:0;text-transform:none;font-weight:300">real returns</span></label>
+              <label class="tog-switch">
+                <input type="checkbox" id="ls-inf-on" checked onchange="toggleInf('ls')">
+                <span class="tog-slider"></span>
+              </label>
             </div>
-            <input type="range" id="ls-inf" min="0" max="15" step="0.5" value="6" oninput="syncFromRange('ls-inf','ls-inf-manual');calcLS()" style="width:100%;accent-color:#f59e0b;margin-top:8px">
-            <div class="range-hints"><span>0%</span><span>15%</span></div>
+            <div id="ls-inf-controls">
+              <div class="manual-row" style="margin-top:10px">
+                <input type="number" id="ls-inf-manual" min="0" max="15" step="0.5" value="6" oninput="syncFromManual('ls-inf','ls-inf-manual',0,15);calcLS()" class="manual-input" style="padding-left:13px">
+                <span class="pct-suffix">%</span>
+              </div>
+              <input type="range" id="ls-inf" min="0" max="15" step="0.5" value="6" oninput="syncFromRange('ls-inf','ls-inf-manual');calcLS()" style="width:100%;accent-color:#f59e0b;margin-top:8px">
+              <div class="range-hints"><span>0%</span><span>15%</span></div>
+            </div>
           </div>
         </div>
         <div class="calc-result">
           <h3>Projected Returns</h3>
-          <div class="result-row"><span class="result-label">Amount Invested</span><span class="result-val" id="ls-invested">—</span></div>
-          <div class="result-row"><span class="result-label">Estimated Returns Earned</span><span class="result-val pos" id="ls-returns">—</span></div>
-          <div class="result-row"><span class="result-label">Total Corpus (Nominal)</span><span class="result-val big" id="ls-total">—</span></div>
-          <div class="result-row"><span class="result-label">Wealth Multiplied By</span><span class="result-val" id="ls-mult">—</span></div>
-          <div class="result-row inf-row"><span class="result-label inf-label">&#127777;&#65039; Inflation-Adjusted Corpus</span><span class="result-val inf-val" id="ls-real">—</span></div>
+          <div class="result-row"><span class="result-label">Amount Invested</span><span class="result-val" id="ls-invested">...</span></div>
+          <div class="result-row"><span class="result-label">Estimated Returns Earned</span><span class="result-val pos" id="ls-returns">...</span></div>
+          <div class="result-row"><span class="result-label">Total Corpus (Nominal)</span><span class="result-val big" id="ls-total">...</span></div>
+          <div class="result-row"><span class="result-label">Wealth Multiplied By</span><span class="result-val" id="ls-mult">...</span></div>
+          <div class="result-row inf-row"><span class="result-label inf-label">&#127777;&#65039; Inflation-Adjusted Corpus</span><span class="result-val inf-val" id="ls-real">...</span></div>
           <div class="result-row"><span class="result-label" style="font-size:10.5px;color:var(--txf)">Real purchasing power in today's money</span></div>
           <div class="calc-note">&#9888; These are estimated projections based on assumed returns. Mutual fund investments are subject to market risks. Past performance does not guarantee future results.</div>
         </div>
@@ -645,23 +661,31 @@
             <input type="range" id="goal-yrs" min="1" max="40" step="1" value="10" oninput="syncFromRange('goal-yrs','goal-yrs-manual');calcGoal()" style="width:100%;accent-color:var(--acc);margin-top:8px">
             <div class="range-hints"><span>1 yr</span><span>40 yrs</span></div>
           </div>
-          <div class="calc-field inf-field">
-            <label>&#127777;&#65039; Inflation Rate (%) <span style="font-size:10px;color:var(--txf);letter-spacing:0;text-transform:none;font-weight:300">adjusts target for rising costs</span></label>
-            <div class="manual-row">
-              <input type="number" id="goal-inf-manual" min="0" max="15" step="0.5" value="6" oninput="syncFromManual('goal-inf','goal-inf-manual',0,15);calcGoal()" class="manual-input" style="padding-left:13px">
-              <span class="pct-suffix">%</span>
+          <div class="calc-field inf-field" id="goal-inf-wrap">
+            <div class="inf-toggle-row">
+              <label style="margin:0">&#127777;&#65039; Inflation Adjustment <span style="font-size:10px;color:var(--txf);letter-spacing:0;text-transform:none;font-weight:300">adjusts target</span></label>
+              <label class="tog-switch">
+                <input type="checkbox" id="goal-inf-on" checked onchange="toggleInf('goal')">
+                <span class="tog-slider"></span>
+              </label>
             </div>
-            <input type="range" id="goal-inf" min="0" max="15" step="0.5" value="6" oninput="syncFromRange('goal-inf','goal-inf-manual');calcGoal()" style="width:100%;accent-color:#f59e0b;margin-top:8px">
-            <div class="range-hints"><span>0%</span><span>15%</span></div>
+            <div id="goal-inf-controls">
+              <div class="manual-row" style="margin-top:10px">
+                <input type="number" id="goal-inf-manual" min="0" max="15" step="0.5" value="6" oninput="syncFromManual('goal-inf','goal-inf-manual',0,15);calcGoal()" class="manual-input" style="padding-left:13px">
+                <span class="pct-suffix">%</span>
+              </div>
+              <input type="range" id="goal-inf" min="0" max="15" step="0.5" value="6" oninput="syncFromRange('goal-inf','goal-inf-manual');calcGoal()" style="width:100%;accent-color:#f59e0b;margin-top:8px">
+              <div class="range-hints"><span>0%</span><span>15%</span></div>
+            </div>
           </div>
         </div>
         <div class="calc-result">
           <h3>SIP Required</h3>
-          <div class="result-row"><span class="result-label">Goal in Today's Value</span><span class="result-val" id="goal-corpus">—</span></div>
-          <div class="result-row inf-row"><span class="result-label inf-label">&#127777;&#65039; Inflation-Adjusted Target</span><span class="result-val inf-val" id="goal-inf-target">—</span></div>
-          <div class="result-row"><span class="result-label">Monthly SIP Needed</span><span class="result-val big" id="goal-sip">—</span></div>
-          <div class="result-row"><span class="result-label">Total Amount You'll Invest</span><span class="result-val" id="goal-invested">—</span></div>
-          <div class="result-row"><span class="result-label">Returns Your Money Generates</span><span class="result-val pos" id="goal-returns">—</span></div>
+          <div class="result-row"><span class="result-label">Goal in Today's Value</span><span class="result-val" id="goal-corpus">...</span></div>
+          <div class="result-row inf-row"><span class="result-label inf-label">&#127777;&#65039; Inflation-Adjusted Target</span><span class="result-val inf-val" id="goal-inf-target">...</span></div>
+          <div class="result-row"><span class="result-label">Monthly SIP Needed</span><span class="result-val big" id="goal-sip">...</span></div>
+          <div class="result-row"><span class="result-label">Total Amount You'll Invest</span><span class="result-val" id="goal-invested">...</span></div>
+          <div class="result-row"><span class="result-label">Returns Your Money Generates</span><span class="result-val pos" id="goal-returns">...</span></div>
           <div class="calc-note">&#9888; These are estimated projections. Actual returns may vary depending on market conditions. Consult Igris Capital for a personalized investment plan.</div>
         </div>
       </div>
@@ -736,9 +760,9 @@
   <div class="contact-body">
     <div class="ci-b rev">
       <h3>We're here to help</h3>
-      <p>Every enquiry gets a personal response from Joy directly — no bots, no call centres, no outsourcing.</p>
+      <p>Every enquiry gets a personal response from Joy directly. No bots, no call centres, no outsourcing..</p>
       <div class="ci-list">
-        <div class="ci-item"><span class="cii">📍</span><span>Mumbai, Maharashtra, India</span></div>
+        <div class="ci-item"><span class="cii">📍</span><span>Mira Bhayandar, Mumbai, Maharashtra, India</span></div>
         <div class="ci-item"><span class="cii">✉️</span><span><a href="mailto:joy@igriscapital.in" style="color:var(--acc);text-decoration:none">joy@igriscapital.in</a></span></div>
         <div class="ci-item"><span class="cii">📞</span><span>+91 89287 93627</span></div>
         <div class="ci-item"><span class="cii">🕐</span><span>Monday – Saturday, 10am – 7pm</span></div>
@@ -794,7 +818,7 @@
   <div class="fb-section rev">
     <div class="stag" style="justify-content:center">Client Feedback</div>
     <h2 style="text-align:center;margin-bottom:6px">What our <em>clients say</em></h2>
-    <p style="text-align:center;color:var(--txm);font-size:13.5px;font-weight:300;margin-bottom:36px">Share your experience — it helps others make informed decisions.</p>
+    <p style="text-align:center;color:var(--txm);font-size:13.5px;font-weight:300;margin-bottom:36px">Share your experience. It helps others make informed decisions..</p>
     <div class="fb-layout">
       <div class="fb-form-wrap">
         <h4>Leave a Review</h4>
@@ -822,7 +846,7 @@
         <div id="fb-wall">
           <div class="fb-empty" id="fb-empty-state">
             <div class="fb-empty-icon">&#9733;</div>
-            <p>No reviews yet — be the first to share your experience!</p>
+            <p>No reviews yet. Be the first to share your experience!</p>
           </div>
         </div>
       </div>
@@ -843,7 +867,7 @@
     <p>Welcome to Igris Capital. By accessing or using our website and services, you agree to be bound by these Terms and Conditions. Please read them carefully before proceeding.</p>
 
     <h3>1. About Igris Capital</h3>
-    <p>Igris Capital is a financial advisory and distribution services firm based in Mumbai, Maharashtra, India. We are registered as an AMFI Mutual Fund Distributor (ARN holder) and operate as a Point of Sales Person (POSP) for both Life and Non-Life Insurance products under applicable IRDAI regulations. Igris Capital is also a registered MSME under the Government of India — <strong>UDYAM-MH-33-0636264</strong>.</p>
+    <p>Igris Capital is a financial advisory and distribution services firm based in Mumbai, Maharashtra, India. We are registered as an AMFI Mutual Fund Distributor (<strong>ARN-356525</strong>, EUIN: <strong>E680309</strong>) and operate as a Point of Sales Person (POSP) for both Life and Non-Life Insurance products under applicable IRDAI regulations. Igris Capital is also a registered MSME (<strong>UDYAM-MH-33-0636264</strong>) and holds a Shop Act (Gumasta) registration (ID: <strong>103111522603</strong>).</p>
 
     <h3>2. Services Offered</h3>
     <p>Igris Capital provides the following services:</p>
@@ -867,7 +891,7 @@
     </ul>
 
     <h3>5. Intellectual Property</h3>
-    <p>All content on this website — including text, logos, graphics, and the Igris Capital brand — is the intellectual property of Igris Capital. Unauthorized reproduction, distribution, or use is strictly prohibited.</p>
+    <p>All content on this website, including text, logos, graphics, and the Igris Capital brand, is the intellectual property of Igris Capital. Unauthorized reproduction, distribution, or use is strictly prohibited.</p>
 
     <h3>6. Third-Party Links</h3>
     <p>Our website may contain links to third-party websites (such as mutual fund AMCs, insurance companies, or lenders). Igris Capital is not responsible for the content, accuracy, or privacy practices of any third-party sites. Visiting such links is at your own risk.</p>
@@ -908,9 +932,9 @@
     <p>We may collect the following types of information when you interact with Igris Capital:</p>
     <ul>
       <li><strong>Personal Identification:</strong> Name, phone number, email address, date of birth</li>
-      <li><strong>Financial Information:</strong> Income details, loan requirements, investment goals — shared voluntarily for advisory purposes</li>
+      <li><strong>Financial Information:</strong> Income details, loan requirements, investment goals shared voluntarily for advisory purposes</li>
       <li><strong>Communication Data:</strong> Messages sent via our contact form, WhatsApp, or email</li>
-      <li><strong>Usage Data:</strong> Browser type, pages visited, time spent — collected anonymously for improving user experience</li>
+      <li><strong>Usage Data:</strong> Browser type, pages visited, time spent, collected anonymously for improving user experience</li>
     </ul>
 
     <h3>2. How We Use Your Information</h3>
@@ -1004,11 +1028,13 @@
 
     <h3>Regulatory Registrations</h3>
     <ul>
-      <li>MSME Registered · UDYAM-MH-33-0636264</li>
-      <li>AMFI Registered Mutual Fund Distributor (ARN Holder)</li>
-      <li>POSP — Life Insurance (IRDAI Compliant)</li>
-      <li>POSP — Non-Life Insurance (IRDAI Compliant)</li>
-      <li>DSA / Referral Partner: HDFC Bank, ICICI Bank, Axis Bank, Bajaj Finserv</li>
+      <li><strong>MSME Registered</strong> · UDYAM-MH-33-0636264</li>
+      <li><strong>AMFI Registered Mutual Fund Distributor</strong> · ARN-356525</li>
+      <li><strong>EUIN</strong> · E680309</li>
+      <li><strong>POSP: Life Insurance</strong> (IRDAI Compliant)</li>
+      <li><strong>POSP: Non-Life Insurance</strong> (IRDAI Compliant)</li>
+      <li><strong>Shop Act (Gumasta)</strong> · ID: 103111522603</li>
+      <li><strong>DSA / Referral Partner:</strong> HDFC Bank, ICICI Bank, Axis Bank, Bajaj Finserv</li>
     </ul>
 
     <h3>Contact for Grievances</h3>
@@ -1042,7 +1068,7 @@
       </div>
       <p>Capital &amp; Wealth Advisory, Mumbai. Clarity for your financial decisions.</p>
       <div style="margin-top:12px;font-size:10.5px;color:var(--txf);line-height:1.85">
-        AMFI · POSP Life · POSP Non-Life<br>
+        AMFI ARN-356525 · EUIN E680309 · POSP Life &amp; Non-Life · MSME UDYAM-MH-33-0636264<br>
         <span style="color:var(--acc)"><a href="mailto:joy@igriscapital.in" style="color:var(--acc);text-decoration:none">joy@igriscapital.in</a></span> · +91 89287 93627
       </div>
     </div>
@@ -1076,60 +1102,94 @@
   </div>
   <div class="footer-bottom">
     <div class="footer-disclaimer">
-      <strong>Regulatory Disclaimer:</strong> Mutual fund investments are subject to market risks. Please read all scheme-related documents carefully before investing. Past performance is not indicative of future returns. Igris Capital is an AMFI Registered Mutual Fund Distributor (ARN-356525) and earns distribution commissions. Insurance is the subject matter of solicitation — Igris Capital operates as a Point of Sales Person (POSP) under IRDAI regulations. Loan facilitation is offered as a DSA/referral partner; all loans are subject to the lending institution's credit assessment and approval criteria. The information on this website is for general informational purposes only and does not constitute investment, tax, or legal advice. Igris Capital is not a SEBI-registered Investment Adviser. All calculator outputs are indicative estimates only and should not be relied upon as financial projections.
+      <strong>Regulatory Disclaimer:</strong> Mutual fund investments are subject to market risks. Please read all scheme-related documents carefully before investing. Past performance is not indicative of future returns. Igris Capital is an AMFI Registered Mutual Fund Distributor (ARN-356525, EUIN: E680309) and earns distribution commissions. Insurance is the subject matter of solicitation. Igris Capital operates as a Point of Sales Person (POSP) under IRDAI regulations. Loan facilitation is offered as a DSA/referral partner; all loans are subject to the lending institution's credit assessment and approval criteria. The information on this website is for general informational purposes only and does not constitute investment, tax, or legal advice. Igris Capital is not a SEBI-registered Investment Adviser. All calculator outputs are indicative estimates only and should not be relied upon as financial projections.
     </div>
     <div class="footer-meta">
-      <div class="fcopy">© 2026 Igris Capital. All rights reserved. · Mumbai, Maharashtra, India · MSME: UDYAM-MH-33-0636264</div>
+      <div class="fcopy">© 2026 Igris Capital. All rights reserved. · Mira Bhayandar, Mumbai · MSME: UDYAM-MH-33-0636264 · Shop Act: 103111522603</div>
       <div class="footer-dna">Built on clarity, structure, and long-term thinking.</div>
     </div>
   </div>
 </footer>
 
 <!-- ══════════════════════════════════════
-     ADMIN PANEL (hidden, access via #admin-igris)
+     ADMIN PANEL (access: igriscapital.in/#admin-igris)
 ══════════════════════════════════════ -->
-<div id="admin-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9999;backdrop-filter:blur(4px)" onclick="if(event.target===this)closeAdmin()"></div>
-<div id="admin-panel" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10000;background:var(--surf);border:1px solid var(--bdr);border-radius:16px;padding:36px 40px;width:min(480px,92vw);box-shadow:0 24px 64px rgba(0,0,0,.4)">
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px">
+<div id="admin-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9999;backdrop-filter:blur(4px)" onclick="if(event.target===this)closeAdmin()"></div>
+<div id="admin-panel" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10000;background:var(--surf);border:1px solid var(--bdr);border-radius:18px;padding:36px 40px;width:min(520px,94vw);box-shadow:0 24px 80px rgba(0,0,0,.5);max-height:90vh;overflow-y:auto">
+
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px">
     <div>
-      <div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);margin-bottom:4px">Igris Capital</div>
-      <h3 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--txt)">Stats Admin Panel</h3>
+      <div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);margin-bottom:5px">Igris Capital · Admin</div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:var(--txt);margin:0">Live Stats Editor</h3>
+      <p style="font-size:12px;color:var(--txf);margin-top:5px">Changes reflect for all visitors instantly.</p>
     </div>
-    <button onclick="closeAdmin()" style="background:none;border:none;font-size:22px;color:var(--txf);cursor:pointer;padding:4px">✕</button>
+    <button onclick="closeAdmin()" style="background:var(--bg);border:1px solid var(--bdr);border-radius:8px;font-size:18px;color:var(--txm);cursor:pointer;padding:6px 10px;line-height:1">✕</button>
   </div>
 
-  <div style="display:flex;flex-direction:column;gap:18px">
+  <!-- API KEY SETUP -->
+  <div id="admin-setup" style="display:none;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.3);border-radius:10px;padding:16px 18px;margin-bottom:22px">
+    <p style="font-size:12px;color:#f59e0b;margin-bottom:10px;font-weight:500">⚠️ First-time setup: Enter your JSONBin API key to enable live updates for all visitors.</p>
+    <input type="text" id="admin-binkey" placeholder="JSONBin Master Key ($2b$...)" style="width:100%;background:var(--bg);border:1px solid var(--bdr);border-radius:7px;padding:10px 12px;font-size:12px;color:var(--txt);font-family:monospace">
+    <input type="text" id="admin-binid" placeholder="Bin ID (optional — leave blank to auto-create)" style="width:100%;background:var(--bg);border:1px solid var(--bdr);border-radius:7px;padding:10px 12px;font-size:12px;color:var(--txt);font-family:monospace;margin-top:8px">
+    <button onclick="saveApiSetup()" style="margin-top:10px;background:var(--acc);color:#fff;border:none;border-radius:7px;padding:9px 18px;font-size:12px;cursor:pointer">Save API Setup</button>
+    <p style="font-size:10.5px;color:var(--txf);margin-top:8px">Get a free key at <a href="https://jsonbin.io" target="_blank" style="color:var(--acc)">jsonbin.io</a> → Register → API Keys</p>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:20px" id="admin-fields">
+
+    <!-- AUM -->
     <div class="admin-field">
-      <label>AUM (Assets Under Advisory) <span style="color:var(--txf);font-size:11px">shown as ₹X Cr+</span></label>
-      <div style="display:flex;align-items:center;gap:8px;margin-top:8px">
-        <span style="color:var(--txm);font-size:14px">₹</span>
-        <input type="number" id="admin-aum" min="0" step="0.5" placeholder="e.g. 12" style="flex:1">
-        <span style="color:var(--txm);font-size:14px">Cr+</span>
+      <label>📊 Assets Under Advisory (AUM)</label>
+      <div style="display:flex;gap:8px;margin-top:8px;align-items:center">
+        <input type="number" id="admin-aum" min="0" step="0.01" placeholder="e.g. 12" style="flex:1">
+        <select id="admin-aum-unit" style="background:var(--bg);border:1px solid var(--bdr);border-radius:8px;padding:11px 10px;color:var(--txt);font-family:'Outfit',sans-serif;font-size:13px">
+          <option value="K">Thousand (K)</option>
+          <option value="L">Lakh (L)</option>
+          <option value="Cr" selected>Crore (Cr)</option>
+        </select>
       </div>
+      <div id="aum-preview" style="font-size:11px;color:var(--acc);margin-top:6px"></div>
     </div>
+
+    <!-- LOANS -->
     <div class="admin-field">
-      <label>Loans Disbursed <span style="color:var(--txf);font-size:11px">shown as ₹X Cr+</span></label>
-      <div style="display:flex;align-items:center;gap:8px;margin-top:8px">
-        <span style="color:var(--txm);font-size:14px">₹</span>
-        <input type="number" id="admin-loans" min="0" step="0.5" placeholder="e.g. 8" style="flex:1">
-        <span style="color:var(--txm);font-size:14px">Cr+</span>
+      <label>🏦 Loans Disbursed</label>
+      <div style="display:flex;gap:8px;margin-top:8px;align-items:center">
+        <input type="number" id="admin-loans" min="0" step="0.01" placeholder="e.g. 8" style="flex:1">
+        <select id="admin-loans-unit" style="background:var(--bg);border:1px solid var(--bdr);border-radius:8px;padding:11px 10px;color:var(--txt);font-family:'Outfit',sans-serif;font-size:13px">
+          <option value="K">Thousand (K)</option>
+          <option value="L">Lakh (L)</option>
+          <option value="Cr" selected>Crore (Cr)</option>
+        </select>
       </div>
+      <div id="loans-preview" style="font-size:11px;color:var(--acc);margin-top:6px"></div>
     </div>
+
+    <!-- INSURANCE -->
     <div class="admin-field">
-      <label>Insurance Policies <span style="color:var(--txf);font-size:11px">shown as X+</span></label>
-      <div style="display:flex;align-items:center;gap:8px;margin-top:8px">
+      <label>🛡️ Insurance Policies</label>
+      <div style="display:flex;gap:8px;margin-top:8px;align-items:center">
         <input type="number" id="admin-ins" min="0" step="1" placeholder="e.g. 50" style="flex:1">
-        <span style="color:var(--txm);font-size:14px">+</span>
+        <select id="admin-ins-unit" style="background:var(--bg);border:1px solid var(--bdr);border-radius:8px;padding:11px 10px;color:var(--txt);font-family:'Outfit',sans-serif;font-size:13px">
+          <option value="none" selected>Just number</option>
+          <option value="K">Thousand (K)</option>
+          <option value="L">Lakh (L)</option>
+        </select>
       </div>
+      <div id="ins-preview" style="font-size:11px;color:var(--acc);margin-top:6px"></div>
     </div>
+
   </div>
 
-  <div style="display:flex;gap:10px;margin-top:28px">
-    <button onclick="saveAdminStats()" class="btn-p" style="flex:1;border-radius:8px;padding:13px">Save &amp; Update →</button>
-    <button onclick="closeAdmin()" class="btn-o" style="border-radius:8px;padding:13px 20px">Cancel</button>
+  <div id="admin-save-status" style="display:none;padding:10px 14px;border-radius:8px;font-size:12px;margin-top:16px;text-align:center"></div>
+
+  <div style="display:flex;gap:10px;margin-top:24px">
+    <button onclick="saveAdminStats()" class="btn-p" id="admin-save-btn" style="flex:1;border-radius:8px;padding:13px;font-size:13px">Update Live Stats →</button>
+    <button onclick="closeAdmin()" class="btn-o" style="border-radius:8px;padding:13px 20px;font-size:13px">Cancel</button>
   </div>
-  <p style="font-size:11px;color:var(--txf);margin-top:14px;text-align:center">Changes save locally and persist on this device.</p>
+  <p style="font-size:10.5px;color:var(--txf);margin-top:12px;text-align:center">All visitors worldwide see these values. Updates take ~2 seconds.</p>
 </div>
+
 <script src="js/app.js"></script>
 </body>
 </html>
