@@ -8,7 +8,7 @@ hamBtn.addEventListener('click',()=>{const open=hamBtn.classList.toggle('open');
 // THEME
 const root=document.documentElement,tBtn=document.getElementById('themeBtn');
 function applyTheme(t){root.setAttribute('data-theme',t);tBtn.textContent=t==='dark'?'☀️':'🌙';localStorage.setItem('ic-theme',t);}
-applyTheme(localStorage.getItem('ic-theme')||'light');
+applyTheme(localStorage.getItem('ic-theme')||'dark');
 tBtn.addEventListener('click',()=>applyTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'));
 
 // CALC TABS
