@@ -84,14 +84,17 @@ function calcSIP(){
   const P=Math.max(100,getVal('sip-amt-manual'));
   const r=Math.max(0.01,getVal('sip-rate-manual'))/100/12;
   const n=Math.max(1,getVal('sip-yrs-manual'))*12;
-  const inf=getVal('sip-inf-manual')||0;
+  const infOn=document.getElementById('sip-inf-on')?.checked!==false;
+  const inf=infOn?(getVal('sip-inf-manual')||0):0;
   const fv=P*((Math.pow(1+r,n)-1)/r)*(1+r);
   const invested=P*n;
   const yrs=Math.max(1,getVal('sip-yrs-manual'));
-  const realFV=fv/Math.pow(1+inf/100,yrs);
+  const realFV=infOn?fv/Math.pow(1+inf/100,yrs):fv;
   document.getElementById('sip-invested').textContent=fmtK(invested);
   document.getElementById('sip-returns').textContent=fmtK(fv-invested);
   document.getElementById('sip-total').textContent=fmtK(fv);
+  const realRow=document.querySelector('#calc-0 .inf-row');
+  if(realRow) realRow.style.display=infOn?'':'none';
   document.getElementById('sip-real').textContent=fmtK(realFV);
   drawSIPChart(P,getVal('sip-rate-manual'),getVal('sip-yrs-manual'));
 }
@@ -124,26 +127,32 @@ function calcLS(){
   const P=Math.max(100,getVal('ls-amt-manual'));
   const r=Math.max(0.01,getVal('ls-rate-manual'))/100;
   const n=Math.max(1,getVal('ls-yrs-manual'));
-  const inf=getVal('ls-inf-manual')||0;
+  const infOn=document.getElementById('ls-inf-on')?.checked!==false;
+  const inf=infOn?(getVal('ls-inf-manual')||0):0;
   const fv=P*Math.pow(1+r,n);
-  const realFV=fv/Math.pow(1+inf/100,n);
+  const realFV=infOn?fv/Math.pow(1+inf/100,n):fv;
   document.getElementById('ls-invested').textContent=fmtK(P);
   document.getElementById('ls-returns').textContent=fmtK(fv-P);
   document.getElementById('ls-total').textContent=fmtK(fv);
   document.getElementById('ls-mult').textContent=(fv/P).toFixed(1)+'x';
+  const realRow=document.querySelector('#calc-1 .inf-row');
+  if(realRow) realRow.style.display=infOn?'':'none';
   document.getElementById('ls-real').textContent=fmtK(realFV);
 }
 
 function calcGoal(){
   const targetNominal=Math.max(1000,getVal('goal-target-manual'));
-  const inf=getVal('goal-inf-manual')||0;
+  const infOn=document.getElementById('goal-inf-on')?.checked!==false;
+  const inf=infOn?(getVal('goal-inf-manual')||0):0;
   const yrs=Math.max(1,getVal('goal-yrs-manual'));
-  const inflatedTarget=targetNominal*Math.pow(1+inf/100,yrs);
+  const inflatedTarget=infOn?targetNominal*Math.pow(1+inf/100,yrs):targetNominal;
   const r=Math.max(0.01,getVal('goal-rate-manual'))/100/12;
   const n=yrs*12;
   const sip=inflatedTarget*r/((Math.pow(1+r,n)-1)*(1+r));
   const invested=sip*n;
   document.getElementById('goal-corpus').textContent=fmtK(targetNominal);
+  const infRow=document.querySelector('#calc-2 .inf-row');
+  if(infRow) infRow.style.display=infOn?'':'none';
   document.getElementById('goal-inf-target').textContent=fmtK(inflatedTarget);
   document.getElementById('goal-sip').textContent=fmt(sip);
   document.getElementById('goal-invested').textContent=fmtK(invested);
@@ -162,8 +171,38 @@ function calcEMI(){
   document.getElementById('emi-total').textContent=fmtK(total);
 }
 
+
+// ── INFLATION TOGGLE ──
+function toggleInf(prefix){
+  const on = document.getElementById(prefix+'-inf-on').checked;
+  const controls = document.getElementById(prefix+'-inf-controls');
+  const wrap = document.getElementById(prefix+'-inf-wrap');
+  controls.style.transition='opacity .25s,max-height .3s';
+  if(on){
+    controls.style.opacity='1';
+    controls.style.maxHeight='200px';
+    controls.style.pointerEvents='';
+    wrap.classList.add('inf-active');
+  } else {
+    controls.style.opacity='0';
+    controls.style.maxHeight='0';
+    controls.style.pointerEvents='none';
+    controls.style.overflow='hidden';
+    wrap.classList.remove('inf-active');
+  }
+  // Recalculate
+  if(prefix==='sip') calcSIP();
+  else if(prefix==='ls') calcLS();
+  else if(prefix==='goal') calcGoal();
+}
+
 // Init calculators on load
 calcSIP();calcLS();calcGoal();calcEMI();
+// Set initial inflation wrap state
+['sip','ls','goal'].forEach(p=>{
+  const wrap=document.getElementById(p+'-inf-wrap');
+  if(wrap) wrap.classList.add('inf-active');
+});
 
 
 // FEEDBACK SYSTEM — proper star rating + localStorage persistence
@@ -283,61 +322,213 @@ calcSIP();calcLS();calcGoal();calcEMI();
   });
 })();
 
-// ── HERO STATS ADMIN ──
-const STATS_KEY = 'igris-stats-v1';
+// ── HERO STATS — JSONBin live sync ──
+const BIN_SETUP_KEY = 'igris-bin-setup';
+const STATS_CACHE   = 'igris-stats-cache';
+const DEFAULT_STATS = {
+  aum:'12', aumUnit:'Cr',
+  loans:'8', loansUnit:'Cr',
+  ins:'50',  insUnit:'none'
+};
 
-function loadStats(){
-  const defaults = {aum:'12', loans:'8', ins:'50'};
-  let stats = defaults;
-  try {
-    const saved = JSON.parse(localStorage.getItem(STATS_KEY));
-    if(saved) stats = {...defaults, ...saved};
-  } catch(e){}
-  document.getElementById('aum-val').textContent   = stats.aum;
-  document.getElementById('loans-val').textContent = stats.loans;
-  document.getElementById('ins-val').textContent   = stats.ins;
-  // pre-fill admin inputs
-  const ai = document.getElementById('admin-aum');
-  if(ai){ ai.value = stats.aum; }
-  const li = document.getElementById('admin-loans');
-  if(li){ li.value = stats.loans; }
-  const ii = document.getElementById('admin-ins');
-  if(ii){ ii.value = stats.ins; }
+function formatStat(val, unit, prefix=''){
+  const n = parseFloat(val)||0;
+  if(unit==='none') return `${n}+`;
+  if(unit==='K')    return `${prefix}${n.toLocaleString('en-IN')}K+`;
+  if(unit==='L')    return `${prefix}${n}L+`;
+  if(unit==='Cr')   return `${prefix}${n}Cr+`;
+  return `${n}`;
 }
 
-function saveAdminStats(){
-  const aum   = document.getElementById('admin-aum').value   || '12';
-  const loans = document.getElementById('admin-loans').value || '8';
-  const ins   = document.getElementById('admin-ins').value   || '50';
-  localStorage.setItem(STATS_KEY, JSON.stringify({aum, loans, ins}));
-  document.getElementById('aum-val').textContent   = aum;
-  document.getElementById('loans-val').textContent = loans;
-  document.getElementById('ins-val').textContent   = ins;
-  closeAdmin();
-  // brief flash confirmation
-  const stats = document.querySelector('.hero-stats');
-  if(stats){ stats.style.outline='2px solid var(--acc)'; setTimeout(()=>stats.style.outline='',1200); }
+function applyStats(s){
+  const el = id => document.getElementById(id);
+  if(el('aum-display'))   el('aum-display').textContent   = formatStat(s.aum,   s.aumUnit,   '₹');
+  if(el('loans-display')) el('loans-display').textContent = formatStat(s.loans, s.loansUnit, '₹');
+  if(el('ins-display'))   el('ins-display').textContent   = formatStat(s.ins,   s.insUnit,   '');
+}
+
+function getBinSetup(){
+  try{ return JSON.parse(localStorage.getItem(BIN_SETUP_KEY)||'null'); }catch(e){ return null; }
+}
+
+async function fetchLiveStats(){
+  const setup = getBinSetup();
+  if(!setup || !setup.key || !setup.binId){
+    // Fallback: use cached or defaults
+    try{
+      const cached = JSON.parse(localStorage.getItem(STATS_CACHE)||'null');
+      applyStats(cached || DEFAULT_STATS);
+    }catch(e){ applyStats(DEFAULT_STATS); }
+    return;
+  }
+  try{
+    const res = await fetch(`https://api.jsonbin.io/v3/b/${setup.binId}/latest`,{
+      headers:{'X-Master-Key': setup.key}
+    });
+    if(!res.ok) throw new Error('fetch failed');
+    const data = await res.json();
+    const stats = data.record;
+    localStorage.setItem(STATS_CACHE, JSON.stringify(stats));
+    applyStats(stats);
+  }catch(e){
+    // fallback to cache
+    try{
+      const cached = JSON.parse(localStorage.getItem(STATS_CACHE)||'null');
+      applyStats(cached || DEFAULT_STATS);
+    }catch(e2){ applyStats(DEFAULT_STATS); }
+  }
+}
+
+async function pushLiveStats(stats){
+  const setup = getBinSetup();
+  if(!setup || !setup.key) return false;
+
+  try{
+    let binId = setup.binId;
+
+    if(!binId){
+      // Create new bin
+      const res = await fetch('https://api.jsonbin.io/v3/b',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','X-Master-Key':setup.key,'X-Bin-Name':'igris-stats','X-Bin-Private':'false'},
+        body: JSON.stringify(stats)
+      });
+      if(!res.ok) throw new Error('create failed');
+      const data = await res.json();
+      binId = data.metadata.id;
+      // Save bin ID
+      const newSetup = {...setup, binId};
+      localStorage.setItem(BIN_SETUP_KEY, JSON.stringify(newSetup));
+      document.getElementById('admin-binid').value = binId;
+    } else {
+      // Update existing bin
+      const res = await fetch(`https://api.jsonbin.io/v3/b/${binId}`,{
+        method:'PUT',
+        headers:{'Content-Type':'application/json','X-Master-Key':setup.key},
+        body: JSON.stringify(stats)
+      });
+      if(!res.ok) throw new Error('update failed');
+    }
+
+    localStorage.setItem(STATS_CACHE, JSON.stringify(stats));
+    return true;
+  }catch(e){
+    console.warn('JSONBin error:', e);
+    return false;
+  }
+}
+
+function updatePreviews(){
+  const get = id => document.getElementById(id);
+  const pv = (valId, unitId, previewId, prefix) => {
+    const el = get(previewId);
+    if(!el) return;
+    const v = get(valId)?.value;
+    const u = get(unitId)?.value;
+    if(v) el.textContent = '→ Will show as: ' + formatStat(v, u, prefix);
+    else el.textContent = '';
+  };
+  pv('admin-aum',   'admin-aum-unit',   'aum-preview',   '₹');
+  pv('admin-loans', 'admin-loans-unit', 'loans-preview', '₹');
+  pv('admin-ins',   'admin-ins-unit',   'ins-preview',   '');
+}
+
+function saveApiSetup(){
+  const key   = document.getElementById('admin-binkey')?.value?.trim();
+  const binId = document.getElementById('admin-binid')?.value?.trim();
+  if(!key){ alert('Please enter a JSONBin Master Key.'); return; }
+  localStorage.setItem(BIN_SETUP_KEY, JSON.stringify({key, binId}));
+  document.getElementById('admin-setup').style.display = 'none';
+  alert('API setup saved! Now you can update stats.');
+}
+
+async function saveAdminStats(){
+  const btn = document.getElementById('admin-save-btn');
+  const status = document.getElementById('admin-save-status');
+  btn.textContent = 'Saving…'; btn.disabled = true;
+
+  const stats = {
+    aum:      document.getElementById('admin-aum')?.value   || DEFAULT_STATS.aum,
+    aumUnit:  document.getElementById('admin-aum-unit')?.value || DEFAULT_STATS.aumUnit,
+    loans:    document.getElementById('admin-loans')?.value  || DEFAULT_STATS.loans,
+    loansUnit:document.getElementById('admin-loans-unit')?.value || DEFAULT_STATS.loansUnit,
+    ins:      document.getElementById('admin-ins')?.value    || DEFAULT_STATS.ins,
+    insUnit:  document.getElementById('admin-ins-unit')?.value || DEFAULT_STATS.insUnit,
+  };
+
+  // Always apply locally first
+  applyStats(stats);
+  localStorage.setItem(STATS_CACHE, JSON.stringify(stats));
+
+  const setup = getBinSetup();
+  if(!setup || !setup.key){
+    status.style.display='block';
+    status.style.background='rgba(245,158,11,.12)';
+    status.style.color='#f59e0b';
+    status.style.border='1px solid rgba(245,158,11,.3)';
+    status.textContent='⚠️ Saved locally only. Set up JSONBin API key to push to all visitors.';
+    btn.textContent='Update Live Stats →'; btn.disabled=false;
+    setTimeout(()=>{ status.style.display='none'; closeAdmin(); },3000);
+    return;
+  }
+
+  const ok = await pushLiveStats(stats);
+  status.style.display='block';
+  if(ok){
+    status.style.background='rgba(34,197,94,.1)';
+    status.style.color='#16a34a';
+    status.style.border='1px solid rgba(34,197,94,.3)';
+    status.textContent='✓ Stats updated! All visitors will see the new values.';
+    setTimeout(()=>{ status.style.display='none'; closeAdmin(); },2500);
+  } else {
+    status.style.background='rgba(239,68,68,.1)';
+    status.style.color='#dc2626';
+    status.style.border='1px solid rgba(239,68,68,.3)';
+    status.textContent='⚠️ JSONBin save failed — saved locally only. Check your API key.';
+    setTimeout(()=>{ status.style.display='none'; }, 4000);
+  }
+  btn.textContent='Update Live Stats →'; btn.disabled=false;
 }
 
 function openAdmin(){
-  loadStats();
+  const setup = getBinSetup();
+  const setupDiv = document.getElementById('admin-setup');
+  if(setupDiv) setupDiv.style.display = (!setup || !setup.key) ? 'block' : 'none';
+
+  // Pre-fill fields from cache or defaults
+  let s = DEFAULT_STATS;
+  try{ const c=JSON.parse(localStorage.getItem(STATS_CACHE)||'null'); if(c) s=c; }catch(e){}
+  const set = (id,v)=>{ const el=document.getElementById(id); if(el) el.value=v; };
+  set('admin-aum',        s.aum);
+  set('admin-aum-unit',   s.aumUnit   || 'Cr');
+  set('admin-loans',      s.loans);
+  set('admin-loans-unit', s.loansUnit || 'Cr');
+  set('admin-ins',        s.ins);
+  set('admin-ins-unit',   s.insUnit   || 'none');
+  if(setup?.binId){ set('admin-binid', setup.binId); }
+
+  // Wire up live previews
+  ['admin-aum','admin-aum-unit','admin-loans','admin-loans-unit','admin-ins','admin-ins-unit']
+    .forEach(id=>{ const el=document.getElementById(id); if(el) el.addEventListener('input',updatePreviews); });
+  updatePreviews();
+
   document.getElementById('admin-overlay').style.display='block';
   document.getElementById('admin-panel').style.display='block';
   document.body.style.overflow='hidden';
 }
+
 function closeAdmin(){
   document.getElementById('admin-overlay').style.display='none';
   document.getElementById('admin-panel').style.display='none';
   document.body.style.overflow='';
 }
 
-// Open admin on URL hash #admin-igris
+// Hash trigger
 function checkAdminHash(){
   if(location.hash==='#admin-igris'){ openAdmin(); history.replaceState(null,'',location.pathname); }
 }
 window.addEventListener('hashchange', checkAdminHash);
 checkAdminHash();
 
-// Load stats on page load
-document.addEventListener('DOMContentLoaded', loadStats);
-loadStats();
+// Load stats for all visitors on page load
+fetchLiveStats();
